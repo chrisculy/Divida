@@ -1,0 +1,14 @@
+# Automatically detect text files
+* text=auto
+
+# Text files
+*.txt text
+*.cpp text
+*.h text
+*.vcxproj text
+*.vcxproj.filters text
+*.sln text
+*.md text
+
+# Non-text files
+*.lib binary
