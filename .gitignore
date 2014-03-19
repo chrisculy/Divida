@@ -2,9 +2,8 @@
 *.sdf
 *.opensdf
 *.pfx
-Debug/
-Release/
+*.vcxproj.user
+bin/
+obj/
 Generated Files/
 ipch/
-Divida-WinRt/
-/Divida-All.sln
