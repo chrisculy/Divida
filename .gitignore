@@ -3,6 +3,8 @@
 *.opensdf
 *.pfx
 *.vcxproj.user
+.DS_Store
+build/
 bin/
 obj/
 Generated Files/
