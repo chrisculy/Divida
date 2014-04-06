@@ -19,7 +19,7 @@ namespace Divida
 		return m_toPerson;
 	}
 
-	const float Transaction::Amount() const
+    float Transaction::Amount() const
 	{
 		return m_amount;
 	}
@@ -29,7 +29,5 @@ namespace Divida
 		std::wstringstream s;
 		s << m_fromPerson << L" pays " << L"$" << std::setiosflags(std::ios::fixed) << std::setprecision(2) << m_amount << L" to " << m_toPerson;
 		return s.str();
-	}
-
-	IMPLEMENT_TO_STRING_SMART_PTRS(Transaction);
+    }
 }

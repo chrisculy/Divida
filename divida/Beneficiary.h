@@ -13,7 +13,7 @@ namespace Divida
 		Beneficiary(const std::shared_ptr<Person> person, float weight = 1.0f);
 
 		const std::shared_ptr<Person> Person() const;
-		const float Weight() const;
+        float Weight() const;
 		std::wstring ToString() const;
 
 	private:

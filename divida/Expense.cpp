@@ -19,7 +19,7 @@ namespace Divida
 		return m_payer;
 	}
 
-	const float Expense::Total() const
+    float Expense::Total() const
 	{
 		float total = 0.0f;
 		for (auto item : m_items)
@@ -61,7 +61,5 @@ namespace Divida
 		std::wstringstream s;
 		s << TO_STRING_OBJECT_BEGIN_TOKEN << Name() << TO_STRING_DELIMITER << m_date.ToString() << TO_STRING_DELIMITER << Total() << TO_STRING_DELIMITER << m_payer << TO_STRING_DELIMITER << m_items << TO_STRING_OBJECT_END_TOKEN;
 		return s.str();
-	}
-
-	IMPLEMENT_TO_STRING_SMART_PTRS(Expense);
+    }
 }

@@ -19,7 +19,7 @@ namespace Divida
 
 		const Date& Date() const;
 		const std::shared_ptr<Person> Payer() const;
-		const float Total() const;
+        float Total() const;
 		const std::vector<std::shared_ptr<Item>>& Items() const;
 
 		void SetDate(const Divida::Date& date);

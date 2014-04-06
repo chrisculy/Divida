@@ -1,6 +1,7 @@
 #include "pch.h"
-
 #include "ObjectSerializer.h"
+
+#include "Exception.h"
 
 namespace Divida
 {
@@ -27,7 +28,7 @@ namespace Divida
 			}
 		}
 
-		throw new std::exception("Failed to read Object from XML.");
+        throw Exception(L"Failed to read Object from XML.");
 	}
 
 	void ObjectSerializer::Write(pugi::xml_document& document, const Object& element)

@@ -51,7 +51,7 @@ namespace Divida
 		const std::vector<std::shared_ptr<Expense>>& Expenses() const;
 
 		std::vector<std::shared_ptr<Transaction>> CalculateTransactions();
-		const ReportInfo* const GetReportInfoForPerson(const std::wstring& name) const;
+        const ReportInfo* GetReportInfoForPerson(const std::wstring& name) const;
 		unsigned int GetItemNamePrintWidth() const;
 
 	private:
@@ -103,7 +103,7 @@ namespace Divida
 		static const std::wstring YEAR_ATTRIBUTE;
 	};
 
-	template<typename T> static bool ReportXmlSerializer::WriteAttribute(pugi::xml_node& node, const std::wstring& attributeName, const T& attributeValue)
+    template<typename T> bool ReportXmlSerializer::WriteAttribute(pugi::xml_node& node, const std::wstring& attributeName, const T& attributeValue)
 	{
 		auto attribute = node.append_attribute(attributeName.c_str());
 		if (attribute == nullptr)

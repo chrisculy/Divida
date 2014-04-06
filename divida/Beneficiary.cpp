@@ -14,7 +14,7 @@ namespace Divida
 		return m_person;
 	}
 
-	const float Beneficiary::Weight() const
+    float Beneficiary::Weight() const
 	{
 		return m_weight;
 	}
@@ -24,7 +24,5 @@ namespace Divida
 		std::wstringstream s;
 		s << TO_STRING_OBJECT_BEGIN_TOKEN << m_person << TO_STRING_DELIMITER << m_weight << TO_STRING_OBJECT_END_TOKEN;
 		return s.str();
-	}
-
-	IMPLEMENT_TO_STRING_SMART_PTRS(Beneficiary);
+    }
 }
