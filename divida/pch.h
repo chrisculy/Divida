@@ -15,6 +15,7 @@
 #include <windows.h>
 #endif
 
+#include <algorithm>
 #include <iomanip>
 #include <string>
 #include <sstream>
