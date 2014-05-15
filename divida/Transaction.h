@@ -14,7 +14,7 @@ namespace Divida
 
 		const std::weak_ptr<Person> FromPerson() const;
 		const std::weak_ptr<Person> ToPerson() const;
-        float Amount() const;
+		float Amount() const;
 		std::wstring ToString() const;
 
 	private:

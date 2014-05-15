@@ -13,5 +13,5 @@ namespace Divida
 		std::wstringstream s;
 		s << Name();
 		return s.str();
-    }
+	}
 }

@@ -29,7 +29,7 @@ namespace Divida
 			}
 		}
 
-        throw Exception(L"Failed to read Person from XML.");
+		throw Exception(L"Failed to read Person from XML.");
 	}
 
 	void PersonSerializer::Write(pugi::xml_document& document, const Person& element)

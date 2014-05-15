@@ -4,15 +4,15 @@
 
 namespace Divida
 {
-    class Exception
-    {
-    public:
-        Exception(std::wstring message);
-        ~Exception() = default;
+	class Exception
+	{
+	public:
+		Exception(std::wstring message);
+		~Exception() = default;
 
-        std::wstring GetMessage();
+		std::wstring GetMessage();
 
-    private:
-        std::wstring m_message;
-    };
+	private:
+		std::wstring m_message;
+	};
 }

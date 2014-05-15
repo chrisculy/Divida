@@ -117,7 +117,7 @@ namespace Divida
 		return transactions;
 	}
 
-    const ReportInfo* Report::GetReportInfoForPerson(const std::wstring& name) const
+	const ReportInfo* Report::GetReportInfoForPerson(const std::wstring& name) const
 	{
 		auto iter = std::find_if(m_info.begin(), m_info.end(), [&name](const std::pair<std::shared_ptr<Person>, ReportInfo>& current) { return current.first->Name() == name; });
 		if (iter != m_info.end())
@@ -313,7 +313,7 @@ namespace Divida
 			}
 			else
 			{
-                throw Exception(L"Unrecognized child node of report element.");
+				throw Exception(L"Unrecognized child node of report element.");
 			}
 		}
 

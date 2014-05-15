@@ -41,5 +41,5 @@ namespace Divida
 		std::wstringstream s;
 		s << TO_STRING_OBJECT_BEGIN_TOKEN << Name() << TO_STRING_DELIMITER << m_cost << TO_STRING_DELIMITER << m_beneficiaries << TO_STRING_OBJECT_END_TOKEN;
 		return s.str();
-    }
+	}
 }

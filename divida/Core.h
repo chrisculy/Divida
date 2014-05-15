@@ -8,26 +8,26 @@
 
 namespace Divida
 {
-    template<typename T> std::wstring ToString(const std::unique_ptr<T>&)
-    {
-        throw Exception(L"Unimplemented ToString for type.");
-    }
+	template<typename T> std::wstring ToString(const std::unique_ptr<T>&)
+	{
+		throw Exception(L"Unimplemented ToString for type.");
+	}
 
-    template<typename T> std::wstring ToString(const std::shared_ptr<T>&)
-    {
-        throw Exception(L"Unimplemented ToString for type.");
-    }
+	template<typename T> std::wstring ToString(const std::shared_ptr<T>&)
+	{
+		throw Exception(L"Unimplemented ToString for type.");
+	}
 
-    template<typename T> std::wstring ToString(const std::weak_ptr<T>&)
-    {
-        throw Exception(L"Unimplemented ToString for type.");
-    }
+	template<typename T> std::wstring ToString(const std::weak_ptr<T>&)
+	{
+		throw Exception(L"Unimplemented ToString for type.");
+	}
 }
 
 #define DECLARE_TO_STRING_SMART_PTRS(type) \
-    template<> std::wstring ToString<type>(const std::unique_ptr<type>& ptr) { return ptr->ToString(); } \
-    template<> std::wstring ToString<type>(const std::shared_ptr<type>& ptr) { return ptr->ToString(); } \
-    template<> std::wstring ToString<type>(const std::weak_ptr<type>& ptr) \
+	template<> std::wstring ToString<type>(const std::unique_ptr<type>& ptr) { return ptr->ToString(); } \
+	template<> std::wstring ToString<type>(const std::shared_ptr<type>& ptr) { return ptr->ToString(); } \
+	template<> std::wstring ToString<type>(const std::weak_ptr<type>& ptr) \
 	{ \
 		std::wstring output; \
 		std::shared_ptr<type> sharedPtr = ptr.lock(); \

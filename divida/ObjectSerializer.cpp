@@ -28,7 +28,7 @@ namespace Divida
 			}
 		}
 
-        throw Exception(L"Failed to read Object from XML.");
+		throw Exception(L"Failed to read Object from XML.");
 	}
 
 	void ObjectSerializer::Write(pugi::xml_document& document, const Object& element)
