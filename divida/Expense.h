@@ -25,7 +25,7 @@ namespace Divida
 		void SetDate(const Divida::Date& date);
 		void SetPayer(const std::shared_ptr<Person> payer);
 
-		void AddItem(const std::wstring& name, float cost, const std::vector < std::shared_ptr < Beneficiary >> &beneficiaries);
+		void AddItem(const std::wstring& name, float cost, const std::vector<std::shared_ptr<Beneficiary>> &beneficiaries);
 		void AddItems(const std::vector<std::pair<std::wstring, float>>& namesAndCosts, const std::vector<std::shared_ptr<Beneficiary>>& beneficiaries);
 
 		std::wstring ToString() const;
