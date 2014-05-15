@@ -9,7 +9,6 @@ QT	   -= core gui
 TARGET = divida
 TEMPLATE = lib
 CONFIG += staticlib
-QMAKE_CXXFLAGS+=-std=c++1y -stdlib=libc++
 PRECOMPILED_HEADER=../pch.h
 INCLUDEPATH+=../../external/pugixml/include
 LIBS+=-L../../external/pugixml/lib \
@@ -49,4 +48,8 @@ HEADERS += \
 unix {
 	target.path = /usr/lib
 	INSTALLS += target
+	QMAKE_CXXFLAGS+=-std=c++1y -stdlib=libc++
+}
+win32-g++ {
+	QMAKE_CXXFLAGS+=-std=c++11
 }
