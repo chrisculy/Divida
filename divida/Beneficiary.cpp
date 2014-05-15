@@ -9,7 +9,7 @@ namespace Divida
 	{
 	}
 
-	const std::shared_ptr<Person> Beneficiary::Person() const
+	const std::shared_ptr<Divida::Person> Beneficiary::Person() const
 	{
 		return m_person;
 	}

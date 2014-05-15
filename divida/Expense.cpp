@@ -9,7 +9,7 @@ namespace Divida
 	{
 	}
 
-	const Date& Expense::Date() const
+	const Divida::Date& Expense::Date() const
 	{
 		return m_date;
 	}

@@ -15,9 +15,9 @@ namespace Divida
 	class Expense : public Object
 	{
 	public:
-		Expense(const std::wstring& name, const Date& date, const std::shared_ptr<Person> payer);
+		Expense(const std::wstring& name, const Divida::Date& date, const std::shared_ptr<Person> payer);
 
-		const Date& Date() const;
+		const Divida::Date& Date() const;
 		const std::shared_ptr<Person> Payer() const;
 		float Total() const;
 		const std::vector<std::shared_ptr<Item>>& Items() const;
