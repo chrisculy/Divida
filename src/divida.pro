@@ -1,9 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2014-04-06T15:20:19
-#
-#-------------------------------------------------
-
 QT	   -= core gui
 
 TARGET = divida
@@ -26,6 +20,7 @@ SOURCES += \
 	Person.cpp \
 	PersonSerializer.cpp \
 	Report.cpp \
+	ReportXmlSerializer.cpp \
 	Transaction.cpp \
 	Exception.cpp
 
@@ -43,6 +38,7 @@ HEADERS += \
 	Person.h \
 	PersonSerializer.h \
 	Report.h \
+	ReportXmlSerializer.h \
 	Transaction.h \
 	Exception.h
 unix {

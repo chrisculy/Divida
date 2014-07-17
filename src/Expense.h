@@ -36,5 +36,7 @@ namespace Divida
 		std::vector<std::shared_ptr<Item>> m_items;
 	};
 
-	DECLARE_TO_STRING_SMART_PTRS(Expense);
+	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::unique_ptr<Expense>& ptr);
+	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::shared_ptr<Expense>& ptr);
+	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::weak_ptr<Expense>& ptr);
 }

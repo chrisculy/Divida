@@ -62,4 +62,22 @@ namespace Divida
 		s << TO_STRING_OBJECT_BEGIN_TOKEN << Name() << TO_STRING_DELIMITER << m_date.ToString() << TO_STRING_DELIMITER << Total() << TO_STRING_DELIMITER << m_payer << TO_STRING_DELIMITER << m_items << TO_STRING_OBJECT_END_TOKEN;
 		return s.str();
 	}
+
+	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::unique_ptr<Expense>& ptr)
+	{
+		return o << ptr->ToString();
+	}
+
+	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::shared_ptr<Expense>& ptr)
+	{
+		return o << ptr->ToString();
+	}
+
+	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::weak_ptr<Expense>& ptr)
+	{
+		if (std::shared_ptr<Expense> sharedPtr = ptr.lock())
+			o << sharedPtr->ToString();
+
+		return o;
+	}
 }
