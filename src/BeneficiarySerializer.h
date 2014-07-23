@@ -8,9 +8,9 @@ namespace Divida
 	class BeneficiarySerializer : public IXmlSerializer<Beneficiary>
 	{
 	public:
-		virtual const std::wstring& ElementName() const;
-		virtual Beneficiary Read(const pugi::xml_node& node);
-		virtual void Write(pugi::xml_document & document, const Beneficiary& element);
+		virtual const std::wstring& ElementName() const override;
+		virtual Beneficiary Read(const pugi::xml_node& node) override;
+		virtual void Write(pugi::xml_document & document, const Beneficiary& element) override;
 
 	private:
 		static const std::wstring ELEMENT_NAME;

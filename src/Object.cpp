@@ -10,7 +10,7 @@ namespace Divida
 
 	Object::Object(Object&& object)
 	{
-		m_name = object.m_name;
+		m_name = std::move(object.m_name);
 	}
 
 	const std::wstring& Object::Name() const

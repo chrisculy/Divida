@@ -16,7 +16,7 @@ namespace
 namespace Divida
 {
 
-const std::wstring ReportXmlSerializer::REPORT_ELEMENT = L"report";
+	const std::wstring ReportXmlSerializer::REPORT_ELEMENT = L"report";
 	const std::wstring ReportXmlSerializer::PERSONS_ELEMENT = L"persons";
 	const std::wstring ReportXmlSerializer::PERSON_ELEMENT = L"person";
 	const std::wstring ReportXmlSerializer::EXPENSES_ELEMENT = L"expenses";
@@ -36,6 +36,7 @@ const std::wstring ReportXmlSerializer::REPORT_ELEMENT = L"report";
 	const std::wstring ReportXmlSerializer::MONTH_ATTRIBUTE = L"month";
 	const std::wstring ReportXmlSerializer::YEAR_ATTRIBUTE = L"year";
 
+	// TODO: throw legitimate exceptions instead of '1'
 	Report ReportXmlSerializer::Read(const pugi::xml_node& node)
 	{
 		if (!VerifyNode(node, REPORT_ELEMENT))

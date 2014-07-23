@@ -25,7 +25,7 @@ namespace Divida
 		void SetDate(const Divida::Date& date);
 		void SetPayer(const std::shared_ptr<Person> payer);
 
-		void AddItem(const std::wstring& name, float cost, const std::vector<std::shared_ptr<Beneficiary>> &beneficiaries);
+		void AddItem(const std::wstring& name, float cost, const std::vector<std::shared_ptr<Beneficiary>>& beneficiaries);
 		void AddItems(const std::vector<std::pair<std::wstring, float>>& namesAndCosts, const std::vector<std::shared_ptr<Beneficiary>>& beneficiaries);
 
 		std::wstring ToString() const;
@@ -36,7 +36,7 @@ namespace Divida
 		std::vector<std::shared_ptr<Item>> m_items;
 	};
 
-	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::unique_ptr<Expense>& ptr);
-	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::shared_ptr<Expense>& ptr);
-	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::weak_ptr<Expense>& ptr);
+	wide_ostream& operator<<(wide_ostream& o, const std::unique_ptr<Expense>& ptr);
+	wide_ostream& operator<<(wide_ostream& o, const std::shared_ptr<Expense>& ptr);
+	wide_ostream& operator<<(wide_ostream& o, const std::weak_ptr<Expense>& ptr);
 }

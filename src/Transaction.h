@@ -23,7 +23,7 @@ namespace Divida
 		const float m_amount;
 	};
 
-	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::unique_ptr<Transaction>& ptr);
-	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::shared_ptr<Transaction>& ptr);
-	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::weak_ptr<Transaction>& ptr);
+	wide_ostream& operator<<(wide_ostream& o, const std::unique_ptr<Transaction>& ptr);
+	wide_ostream& operator<<(wide_ostream& o, const std::shared_ptr<Transaction>& ptr);
+	wide_ostream& operator<<(wide_ostream& o, const std::weak_ptr<Transaction>& ptr);
 }

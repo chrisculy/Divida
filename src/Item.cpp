@@ -8,7 +8,7 @@ namespace Divida
 	{
 	}
 
-	Item::Item(const std::wstring& name, float cost, const std::vector < std::shared_ptr < Beneficiary >> &beneficiaries) : Object(name), m_cost(cost), m_beneficiaries(beneficiaries)
+	Item::Item(const std::wstring& name, float cost, const std::vector<std::shared_ptr<Beneficiary>>& beneficiaries) : Object(name), m_cost(cost), m_beneficiaries(beneficiaries)
 	{
 	}
 
@@ -43,17 +43,17 @@ namespace Divida
 		return s.str();
 	}
 
-	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::unique_ptr<Item>& ptr)
+	wide_ostream& operator<<(wide_ostream& o, const std::unique_ptr<Item>& ptr)
 	{
 		return o << ptr->ToString();
 	}
 
-	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::shared_ptr<Item>& ptr)
+	wide_ostream& operator<<(wide_ostream& o, const std::shared_ptr<Item>& ptr)
 	{
 		return o << ptr->ToString();
 	}
 
-	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::weak_ptr<Item>& ptr)
+	wide_ostream& operator<<(wide_ostream& o, const std::weak_ptr<Item>& ptr)
 	{
 		if (std::shared_ptr<Item> sharedPtr = ptr.lock())
 			o << sharedPtr->ToString();

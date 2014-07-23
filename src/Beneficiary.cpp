@@ -26,17 +26,17 @@ namespace Divida
 		return s.str();
 	}
 
-	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::unique_ptr<Beneficiary>& ptr)
+	wide_ostream& operator<<(wide_ostream& o, const std::unique_ptr<Beneficiary>& ptr)
 	{
 		return o << ptr->ToString();
 	}
 
-	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::shared_ptr<Beneficiary>& ptr)
+	wide_ostream& operator<<(wide_ostream& o, const std::shared_ptr<Beneficiary>& ptr)
 	{
 		return o << ptr->ToString();
 	}
 
-	std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& operator<<(std::basic_ostream<wchar_t, std::char_traits<wchar_t>>& o, const std::weak_ptr<Beneficiary>& ptr)
+	wide_ostream& operator<<(wide_ostream& o, const std::weak_ptr<Beneficiary>& ptr)
 	{
 		if (std::shared_ptr<Beneficiary> sharedPtr = ptr.lock())
 			o << sharedPtr->ToString();
