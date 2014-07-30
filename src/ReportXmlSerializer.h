@@ -9,7 +9,7 @@ namespace Divida
 	class ReportXmlSerializer
 	{
 	public:
-		static Report Read(const pugi::xml_node& node);
+		static std::unique_ptr<Report> Read(const pugi::xml_node& node);
 		static void Write(pugi::xml_node& node, const Report& report);
 
 	private:

@@ -37,7 +37,7 @@ namespace Divida
 	const std::string ReportXmlSerializer::YEAR_ATTRIBUTE = "year";
 
 	// TODO: throw legitimate exceptions instead of '1'
-	Report ReportXmlSerializer::Read(const pugi::xml_node& node)
+	std::unique_ptr<Report> ReportXmlSerializer::Read(const pugi::xml_node& node)
 	{
 		if (!VerifyNode(node, REPORT_ELEMENT))
 			throw Exception{ "Unexpected node type; expected 'report'." };
@@ -46,8 +46,7 @@ namespace Divida
 		if (reportNameAttribute == nullptr)
 			throw Exception{ "Failed to retrieve 'name' attribute for 'report' node." };
 
-		Report report(reportNameAttribute.value());
-
+		auto report = std::make_unique<Report>(reportNameAttribute.value());
 		for (auto childNode : node.children())
 		{
 			std::string childNodeName = childNode.name();
@@ -62,7 +61,7 @@ namespace Divida
 					if (!ReadAttribute(personNode, NAME_ATTRIBUTE, name))
 						throw 1;
 
-					report.AddPerson(name);
+					report->AddPerson(name);
 				}
 			}
 			else if (childNodeName == EXPENSES_ELEMENT)
@@ -96,11 +95,11 @@ namespace Divida
 					if (!ReadAttribute(expenseNode, PAYER_ATTRIBUTE, payerName))
 						throw 1;
 
-					auto payer = report.GetPerson(payerName);
+					auto payer = report->GetPerson(payerName);
 					if (payer == nullptr)
 						throw 1;
 
-					auto expense = report.NewExpense(expenseName, Date::Create(day, month, year), payer);
+					auto expense = report->NewExpense(expenseName, Date::Create(day, month, year), payer);
 
 					auto itemsNode = expenseNode.child(ITEMS_ELEMENT.c_str());
 					if (itemsNode == nullptr)
@@ -137,9 +136,9 @@ namespace Divida
 							bool useWeightValue = ReadAttribute(beneficiaryNode, WEIGHT_ATTRIBUTE, weight);
 
 							if (useWeightValue)
-								beneficiaries.push_back(std::make_shared<Beneficiary>(report.GetPerson(personName), weight));
+								beneficiaries.push_back(std::make_shared<Beneficiary>(report->GetPerson(personName), weight));
 							else
-								beneficiaries.push_back(std::make_shared<Beneficiary>(report.GetPerson(personName)));
+								beneficiaries.push_back(std::make_shared<Beneficiary>(report->GetPerson(personName)));
 						}
 
 						expense->AddItem(itemName, cost, beneficiaries);
@@ -152,7 +151,7 @@ namespace Divida
 			}
 		}
 
-		return report;
+		return std::move(report);
 	}
 
 	void ReportXmlSerializer::Write(pugi::xml_node& node, const Report& report)
