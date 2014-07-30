@@ -148,7 +148,7 @@ namespace Divida
 			}
 			else
 			{
-				throw Exception(L"Unrecognized child node of report element.");
+				throw Exception("Unrecognized child node of report element.");
 			}
 		}
 
