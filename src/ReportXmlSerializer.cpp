@@ -40,11 +40,11 @@ namespace Divida
 	Report ReportXmlSerializer::Read(const pugi::xml_node& node)
 	{
 		if (!VerifyNode(node, REPORT_ELEMENT))
-			throw 1;
+			throw Exception{ "Unexpected node type; expected 'report'." };
 
 		auto reportNameAttribute = node.attribute(NAME_ATTRIBUTE.c_str());
 		if (reportNameAttribute == nullptr)
-			throw 1;
+			throw Exception{ "Failed to retrieve 'name' attribute for 'report' node." };
 
 		Report report(reportNameAttribute.value());
 
@@ -56,7 +56,7 @@ namespace Divida
 				for (auto personNode : childNode.children())
 				{
 					if (!VerifyNode(personNode, PERSON_ELEMENT))
-						throw 1;
+						throw Exception{ "Unexpected node type; expected 'person'." };;
 
 					std::string name;
 					if (!ReadAttribute(personNode, NAME_ATTRIBUTE, name))
@@ -70,7 +70,7 @@ namespace Divida
 				for (auto expenseNode : childNode.children())
 				{
 					if (!VerifyNode(expenseNode, EXPENSE_ELEMENT))
-						throw 1;
+						throw Exception{ "Unexpected node type; expected 'expense'." };;
 
 					std::string expenseName;
 					if (!ReadAttribute(expenseNode, NAME_ATTRIBUTE, expenseName))
@@ -109,7 +109,7 @@ namespace Divida
 					for (auto itemNode : itemsNode.children())
 					{
 						if (!VerifyNode(itemNode, ITEM_ELEMENT))
-							throw 1;
+							throw Exception{ "Unexpected node type; expected 'item'." };;
 
 						std::string itemName;
 						if (!ReadAttribute(itemNode, NAME_ATTRIBUTE, itemName))
@@ -127,7 +127,7 @@ namespace Divida
 						for (auto beneficiaryNode : beneficiariesNode.children())
 						{
 							if (!VerifyNode(beneficiaryNode, BENEFICIARY_ELEMENT))
-								throw 1;
+								throw Exception{ "Unexpected node type; expected 'beneficiary'." };;
 
 							std::string personName;
 							if (!ReadAttribute(beneficiaryNode, PERSON_ELEMENT, personName))
