@@ -3,9 +3,9 @@
 
 namespace
 {
-	bool VerifyNode(const pugi::xml_node& node, const std::wstring& expectedNodeName)
+	bool VerifyNode(const pugi::xml_node& node, const std::string& expectedNodeName)
 	{
-		std::wstring nodeName = node.name();
+		std::string nodeName = node.name();
 		if (nodeName != expectedNodeName)
 			return false;
 
@@ -16,25 +16,25 @@ namespace
 namespace Divida
 {
 
-	const std::wstring ReportXmlSerializer::REPORT_ELEMENT = L"report";
-	const std::wstring ReportXmlSerializer::PERSONS_ELEMENT = L"persons";
-	const std::wstring ReportXmlSerializer::PERSON_ELEMENT = L"person";
-	const std::wstring ReportXmlSerializer::EXPENSES_ELEMENT = L"expenses";
-	const std::wstring ReportXmlSerializer::EXPENSE_ELEMENT = L"expense";
-	const std::wstring ReportXmlSerializer::BENEFICIARIES_ELEMENT = L"beneficiaries";
-	const std::wstring ReportXmlSerializer::BENEFICIARY_ELEMENT = L"beneficiary";
-	const std::wstring ReportXmlSerializer::ITEMS_ELEMENT = L"items";
-	const std::wstring ReportXmlSerializer::ITEM_ELEMENT = L"item";
-	const std::wstring ReportXmlSerializer::DATE_ELEMENT = L"date";
+	const std::string ReportXmlSerializer::REPORT_ELEMENT = "report";
+	const std::string ReportXmlSerializer::PERSONS_ELEMENT = "persons";
+	const std::string ReportXmlSerializer::PERSON_ELEMENT = "person";
+	const std::string ReportXmlSerializer::EXPENSES_ELEMENT = "expenses";
+	const std::string ReportXmlSerializer::EXPENSE_ELEMENT = "expense";
+	const std::string ReportXmlSerializer::BENEFICIARIES_ELEMENT = "beneficiaries";
+	const std::string ReportXmlSerializer::BENEFICIARY_ELEMENT = "beneficiary";
+	const std::string ReportXmlSerializer::ITEMS_ELEMENT = "items";
+	const std::string ReportXmlSerializer::ITEM_ELEMENT = "item";
+	const std::string ReportXmlSerializer::DATE_ELEMENT = "date";
 
-	const std::wstring ReportXmlSerializer::NAME_ATTRIBUTE = L"name";
-	const std::wstring ReportXmlSerializer::PAYER_ATTRIBUTE = L"payer";
-	const std::wstring ReportXmlSerializer::PERSON_ATTRIBUTE = L"person";
-	const std::wstring ReportXmlSerializer::WEIGHT_ATTRIBUTE = L"weight";
-	const std::wstring ReportXmlSerializer::COST_ATTRIBUTE = L"cost";
-	const std::wstring ReportXmlSerializer::DAY_ATTRIBUTE = L"day";
-	const std::wstring ReportXmlSerializer::MONTH_ATTRIBUTE = L"month";
-	const std::wstring ReportXmlSerializer::YEAR_ATTRIBUTE = L"year";
+	const std::string ReportXmlSerializer::NAME_ATTRIBUTE = "name";
+	const std::string ReportXmlSerializer::PAYER_ATTRIBUTE = "payer";
+	const std::string ReportXmlSerializer::PERSON_ATTRIBUTE = "person";
+	const std::string ReportXmlSerializer::WEIGHT_ATTRIBUTE = "weight";
+	const std::string ReportXmlSerializer::COST_ATTRIBUTE = "cost";
+	const std::string ReportXmlSerializer::DAY_ATTRIBUTE = "day";
+	const std::string ReportXmlSerializer::MONTH_ATTRIBUTE = "month";
+	const std::string ReportXmlSerializer::YEAR_ATTRIBUTE = "year";
 
 	// TODO: throw legitimate exceptions instead of '1'
 	Report ReportXmlSerializer::Read(const pugi::xml_node& node)
@@ -50,7 +50,7 @@ namespace Divida
 
 		for (auto childNode : node.children())
 		{
-			std::wstring childNodeName = childNode.name();
+			std::string childNodeName = childNode.name();
 			if (childNodeName == PERSONS_ELEMENT)
 			{
 				for (auto personNode : childNode.children())
@@ -58,7 +58,7 @@ namespace Divida
 					if (!VerifyNode(personNode, PERSON_ELEMENT))
 						throw 1;
 
-					std::wstring name;
+					std::string name;
 					if (!ReadAttribute(personNode, NAME_ATTRIBUTE, name))
 						throw 1;
 
@@ -72,7 +72,7 @@ namespace Divida
 					if (!VerifyNode(expenseNode, EXPENSE_ELEMENT))
 						throw 1;
 
-					std::wstring expenseName;
+					std::string expenseName;
 					if (!ReadAttribute(expenseNode, NAME_ATTRIBUTE, expenseName))
 						throw 1;
 
@@ -92,7 +92,7 @@ namespace Divida
 					if (!ReadAttribute(dateNode, DAY_ATTRIBUTE, day))
 						throw 1;
 
-					std::wstring payerName;
+					std::string payerName;
 					if (!ReadAttribute(expenseNode, PAYER_ATTRIBUTE, payerName))
 						throw 1;
 
@@ -111,7 +111,7 @@ namespace Divida
 						if (!VerifyNode(itemNode, ITEM_ELEMENT))
 							throw 1;
 
-						std::wstring itemName;
+						std::string itemName;
 						if (!ReadAttribute(itemNode, NAME_ATTRIBUTE, itemName))
 							throw 1;
 
@@ -129,7 +129,7 @@ namespace Divida
 							if (!VerifyNode(beneficiaryNode, BENEFICIARY_ELEMENT))
 								throw 1;
 
-							std::wstring personName;
+							std::string personName;
 							if (!ReadAttribute(beneficiaryNode, PERSON_ELEMENT, personName))
 								throw 1;
 
@@ -248,7 +248,7 @@ namespace Divida
 		}
 	}
 
-	bool ReportXmlSerializer::ReadAttribute(const pugi::xml_node& node, const std::wstring& attributeName, std::wstring& attributeValue)
+	bool ReportXmlSerializer::ReadAttribute(const pugi::xml_node& node, const std::string& attributeName, std::string& attributeValue)
 	{
 		auto attribute = node.attribute(attributeName.c_str());
 		if (attribute == nullptr)
@@ -258,7 +258,7 @@ namespace Divida
 		return true;
 	}
 
-	bool ReportXmlSerializer::ReadAttribute(const pugi::xml_node& node, const std::wstring& attributeName, int& attributeValue)
+	bool ReportXmlSerializer::ReadAttribute(const pugi::xml_node& node, const std::string& attributeName, int& attributeValue)
 	{
 		auto attribute = node.attribute(attributeName.c_str());
 		if (attribute == nullptr)
@@ -268,7 +268,7 @@ namespace Divida
 		return true;
 	}
 
-	bool ReportXmlSerializer::ReadAttribute(const pugi::xml_node& node, const std::wstring& attributeName, float& attributeValue)
+	bool ReportXmlSerializer::ReadAttribute(const pugi::xml_node& node, const std::string& attributeName, float& attributeValue)
 	{
 		auto attribute = node.attribute(attributeName.c_str());
 		if (attribute == nullptr)

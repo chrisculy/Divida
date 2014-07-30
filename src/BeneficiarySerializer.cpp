@@ -3,21 +3,21 @@
 
 namespace Divida
 {
-	const std::wstring BeneficiarySerializer::ELEMENT_NAME = L"beneficiary";
-	const std::wstring BeneficiarySerializer::PERSON_ATTRIBUTE = L"person";
-	const std::wstring BeneficiarySerializer::WEIGHT_ATTRIBUTE = L"weight";
+	const std::string BeneficiarySerializer::ELEMENT_NAME = "beneficiary";
+	const std::string BeneficiarySerializer::PERSON_ATTRIBUTE = "person";
+	const std::string BeneficiarySerializer::WEIGHT_ATTRIBUTE = "weight";
 
-	const std::wstring& BeneficiarySerializer::ElementName() const
+	const std::string& BeneficiarySerializer::ElementName() const
 	{
 		return ELEMENT_NAME;
 	}
 
 	Beneficiary BeneficiarySerializer::Read(const pugi::xml_node& node)
 	{
-		std::wstring nodeName(node.name());
+		std::string nodeName(node.name());
 		if (nodeName == ElementName())
 		{
-			std::wstring personName;
+			std::string personName;
 
 			auto personAttribute = node.attribute(PERSON_ATTRIBUTE.c_str());
 			if (personAttribute != nullptr)

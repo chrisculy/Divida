@@ -5,7 +5,7 @@
 
 namespace Divida
 {
-	Expense::Expense(const std::wstring& name, const Divida::Date& date, const std::shared_ptr<Person> payer) : Object(name), m_date(date), m_payer(payer)
+	Expense::Expense(const std::string& name, const Divida::Date& date, const std::shared_ptr<Person> payer) : Object(name), m_date(date), m_payer(payer)
 	{
 	}
 
@@ -45,35 +45,35 @@ namespace Divida
 		m_payer = payer;
 	}
 
-	void Expense::AddItem(const std::wstring& name, float cost, const std::vector<std::shared_ptr<Beneficiary>>& beneficiaries)
+	void Expense::AddItem(const std::string& name, float cost, const std::vector<std::shared_ptr<Beneficiary>>& beneficiaries)
 	{
 		m_items.push_back(std::make_shared<Item>(name, cost, beneficiaries));
 	}
 
-	void Expense::AddItems(const std::vector<std::pair<std::wstring, float>>& namesAndCosts, const std::vector<std::shared_ptr<Beneficiary>>& beneficiaries)
+	void Expense::AddItems(const std::vector<std::pair<std::string, float>>& namesAndCosts, const std::vector<std::shared_ptr<Beneficiary>>& beneficiaries)
 	{
 		for (auto nameAndCost : namesAndCosts)
 			m_items.push_back(std::make_shared<Item>(nameAndCost.first, nameAndCost.second, beneficiaries));
 	}
 
-	std::wstring Expense::ToString() const
+	std::string Expense::ToString() const
 	{
-		std::wstringstream s;
+		std::stringstream s;
 		s << TO_STRING_OBJECT_BEGIN_TOKEN << Name() << TO_STRING_DELIMITER << m_date.ToString() << TO_STRING_DELIMITER << Total() << TO_STRING_DELIMITER << m_payer << TO_STRING_DELIMITER << m_items << TO_STRING_OBJECT_END_TOKEN;
 		return s.str();
 	}
 
-	wide_ostream& operator<<(wide_ostream& o, const std::unique_ptr<Expense>& ptr)
+	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<Expense>& ptr)
 	{
 		return o << ptr->ToString();
 	}
 
-	wide_ostream& operator<<(wide_ostream& o, const std::shared_ptr<Expense>& ptr)
+	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<Expense>& ptr)
 	{
 		return o << ptr->ToString();
 	}
 
-	wide_ostream& operator<<(wide_ostream& o, const std::weak_ptr<Expense>& ptr)
+	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<Expense>& ptr)
 	{
 		if (std::shared_ptr<Expense> sharedPtr = ptr.lock())
 			o << sharedPtr->ToString();

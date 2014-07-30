@@ -12,16 +12,16 @@
 
 namespace Divida
 {
-	Report::Report(const std::wstring& name) : Object(name)
+	Report::Report(const std::string& name) : Object(name)
 	{
 	}
 
-	void Report::AddPerson(const std::wstring& name)
+	void Report::AddPerson(const std::string& name)
 	{
 		m_persons.push_back(std::make_shared<Person>(name));
 	}
 
-	const std::shared_ptr<Person> Report::GetPerson(const std::wstring& name) const
+	const std::shared_ptr<Person> Report::GetPerson(const std::string& name) const
 	{
 		for (auto person : m_persons)
 		{
@@ -32,7 +32,7 @@ namespace Divida
 		return nullptr;
 	}
 
-	const std::shared_ptr<Expense> Report::NewExpense(const std::wstring& name, const Date& date, const std::shared_ptr<Person> payer)
+	const std::shared_ptr<Expense> Report::NewExpense(const std::string& name, const Date& date, const std::shared_ptr<Person> payer)
 	{
 		// TODO: make sure the name is unique (this also has to work even if the name is changed later on from the Expense API).
 		// TODO: only insert the expense if it doesn't already exist (related to above).
@@ -41,7 +41,7 @@ namespace Divida
 		return expense;
 	}
 
-	const std::shared_ptr<Expense> Report::GetExpense(const std::wstring& name) const
+	const std::shared_ptr<Expense> Report::GetExpense(const std::string& name) const
 	{
 		for (auto expense : m_expenses)
 		{
@@ -118,7 +118,7 @@ namespace Divida
 		return transactions;
 	}
 
-	const ReportInfo* Report::GetReportInfoForPerson(const std::wstring& name) const
+	const ReportInfo* Report::GetReportInfoForPerson(const std::string& name) const
 	{
 		auto iter = std::find_if(m_info.begin(), m_info.end(), [&name](const std::pair<std::shared_ptr<Person>, ReportInfo>& current) { return current.first->Name() == name; });
 		if (iter != m_info.end())
@@ -143,13 +143,13 @@ namespace Divida
 		return width + padding;
 	}
 
-	void Report::AddPaymentForPerson(const std::shared_ptr<Person>& person, const std::wstring& name, float amount)
+	void Report::AddPaymentForPerson(const std::shared_ptr<Person>& person, const std::string& name, float amount)
 	{
 		m_info[person].Payments.push_back(ReportPayment(name, amount));
 		UpdateAmount(person, -amount);
 	}
 
-	void Report::AddExpenseForPerson(const std::shared_ptr<Person>& person, const std::wstring& name, float weight, float amount)
+	void Report::AddExpenseForPerson(const std::shared_ptr<Person>& person, const std::string& name, float weight, float amount)
 	{
 		m_info[person].Expenses.push_back(ReportExpense(name, weight, amount));
 		UpdateAmount(person, weight * amount);
@@ -165,11 +165,11 @@ namespace Divida
 			owingTotal->second += difference;
 	}
 
-	ReportExpense::ReportExpense(const std::wstring& name, float weight, float amount) : Name(name), Weight(weight), Amount(amount)
+	ReportExpense::ReportExpense(const std::string& name, float weight, float amount) : Name(name), Weight(weight), Amount(amount)
 	{
 	}
 
-	ReportPayment::ReportPayment(const std::wstring& name, float amount) : Name(name), Amount(amount)
+	ReportPayment::ReportPayment(const std::string& name, float amount) : Name(name), Amount(amount)
 	{
 	}
 }

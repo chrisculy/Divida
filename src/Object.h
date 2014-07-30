@@ -7,12 +7,12 @@ namespace Divida
 	class Object
 	{
 	public:
-		Object(const std::wstring& name);
+		Object(const std::string& name);
 		Object(Object&& object);
 
-		const std::wstring& Name() const;
+		const std::string& Name() const;
 
 	private:
-		std::wstring m_name;
+		std::string m_name;
 	};
 }

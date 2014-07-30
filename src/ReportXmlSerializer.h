@@ -13,34 +13,34 @@ namespace Divida
 		static void Write(pugi::xml_node& node, const Report& report);
 
 	private:
-		static bool ReadAttribute(const pugi::xml_node& node, const std::wstring& attributeName, std::wstring& attributeValue);
-		static bool ReadAttribute(const pugi::xml_node& node, const std::wstring& attributeName, int& attributeValue);
-		static bool ReadAttribute(const pugi::xml_node& node, const std::wstring& attributeName, float& attributeValue);
-		template<typename T> static bool WriteAttribute(pugi::xml_node& node, const std::wstring& attributeName, const T& attributeValue);
+		static bool ReadAttribute(const pugi::xml_node& node, const std::string& attributeName, std::string& attributeValue);
+		static bool ReadAttribute(const pugi::xml_node& node, const std::string& attributeName, int& attributeValue);
+		static bool ReadAttribute(const pugi::xml_node& node, const std::string& attributeName, float& attributeValue);
+		template<typename T> static bool WriteAttribute(pugi::xml_node& node, const std::string& attributeName, const T& attributeValue);
 
-		static const std::wstring REPORT_ELEMENT;
-		static const std::wstring PERSONS_ELEMENT;
-		static const std::wstring PERSON_ELEMENT;
-		static const std::wstring EXPENSES_ELEMENT;
-		static const std::wstring EXPENSE_ELEMENT;
-		static const std::wstring BENEFICIARIES_ELEMENT;
-		static const std::wstring BENEFICIARY_ELEMENT;
-		static const std::wstring ITEMS_ELEMENT;
-		static const std::wstring ITEM_ELEMENT;
-		static const std::wstring DATE_ELEMENT;
+		static const std::string REPORT_ELEMENT;
+		static const std::string PERSONS_ELEMENT;
+		static const std::string PERSON_ELEMENT;
+		static const std::string EXPENSES_ELEMENT;
+		static const std::string EXPENSE_ELEMENT;
+		static const std::string BENEFICIARIES_ELEMENT;
+		static const std::string BENEFICIARY_ELEMENT;
+		static const std::string ITEMS_ELEMENT;
+		static const std::string ITEM_ELEMENT;
+		static const std::string DATE_ELEMENT;
 
-		static const std::wstring NAME_ATTRIBUTE;
-		static const std::wstring COUNT_ATTRIBUTE;
-		static const std::wstring PAYER_ATTRIBUTE;
-		static const std::wstring PERSON_ATTRIBUTE;
-		static const std::wstring WEIGHT_ATTRIBUTE;
-		static const std::wstring COST_ATTRIBUTE;
-		static const std::wstring DAY_ATTRIBUTE;
-		static const std::wstring MONTH_ATTRIBUTE;
-		static const std::wstring YEAR_ATTRIBUTE;
+		static const std::string NAME_ATTRIBUTE;
+		static const std::string COUNT_ATTRIBUTE;
+		static const std::string PAYER_ATTRIBUTE;
+		static const std::string PERSON_ATTRIBUTE;
+		static const std::string WEIGHT_ATTRIBUTE;
+		static const std::string COST_ATTRIBUTE;
+		static const std::string DAY_ATTRIBUTE;
+		static const std::string MONTH_ATTRIBUTE;
+		static const std::string YEAR_ATTRIBUTE;
 	};
 
-	template<typename T> bool ReportXmlSerializer::WriteAttribute(pugi::xml_node& node, const std::wstring& attributeName, const T& attributeValue)
+	template<typename T> bool ReportXmlSerializer::WriteAttribute(pugi::xml_node& node, const std::string& attributeName, const T& attributeValue)
 	{
 		auto attribute = node.append_attribute(attributeName.c_str());
 		if (attribute == nullptr)

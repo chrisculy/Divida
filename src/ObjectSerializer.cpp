@@ -5,17 +5,17 @@
 
 namespace Divida
 {
-	const std::wstring ObjectSerializer::ELEMENT_NAME = L"object";
-	const std::wstring ObjectSerializer::NAME_ATTRIBUTE = L"name";
+	const std::string ObjectSerializer::ELEMENT_NAME = "object";
+	const std::string ObjectSerializer::NAME_ATTRIBUTE = "name";
 
-	const std::wstring& ObjectSerializer::ElementName() const
+	const std::string& ObjectSerializer::ElementName() const
 	{
 		return ELEMENT_NAME;
 	}
 
 	Object ObjectSerializer::Read(const pugi::xml_node& node)
 	{
-		std::wstring nodeName(node.name());
+		std::string nodeName(node.name());
 		if (nodeName == ElementName())
 		{
 			auto nameAttribute = node.attribute(NAME_ATTRIBUTE.c_str());
@@ -28,7 +28,7 @@ namespace Divida
 			}
 		}
 
-		throw Exception(L"Failed to read Object from XML.");
+		throw Exception("Failed to read Object from XML.");
 	}
 
 	void ObjectSerializer::Write(pugi::xml_document& document, const Object& element)

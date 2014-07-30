@@ -4,7 +4,7 @@
 
 namespace Divida
 {
-	Object::Object(const std::wstring& name) : m_name(name)
+	Object::Object(const std::string& name) : m_name(name)
 	{
 	}
 
@@ -13,7 +13,7 @@ namespace Divida
 		m_name = std::move(object.m_name);
 	}
 
-	const std::wstring& Object::Name() const
+	const std::string& Object::Name() const
 	{
 		return m_name;
 	}

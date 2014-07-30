@@ -39,9 +39,9 @@ namespace Divida
 		return m_day == date.m_day && m_month == date.m_month && m_year == date.m_year;
 	}
 
-	std::wstring Date::ToString() const
+	std::string Date::ToString() const
 	{
-		std::wstringstream s;
+		std::stringstream s;
 		s << m_month << L'/' << m_day << L'/' << m_year;
 		return s.str();
 	}

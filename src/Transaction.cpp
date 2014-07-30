@@ -24,24 +24,24 @@ namespace Divida
 		return m_amount;
 	}
 
-	std::wstring Transaction::ToString() const
+	std::string Transaction::ToString() const
 	{
-		std::wstringstream s;
-		s << m_fromPerson << L" pays " << L"$" << std::setiosflags(std::ios::fixed) << std::setprecision(2) << m_amount << L" to " << m_toPerson;
+		std::stringstream s;
+		s << m_fromPerson << " pays " << "$" << std::setiosflags(std::ios::fixed) << std::setprecision(2) << m_amount << " to " << m_toPerson;
 		return s.str();
 	}
 
-	wide_ostream& operator<<(wide_ostream& o, const std::unique_ptr<Transaction>& ptr)
+	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<Transaction>& ptr)
 	{
 		return o << ptr->ToString();
 	}
 
-	wide_ostream& operator<<(wide_ostream& o, const std::shared_ptr<Transaction>& ptr)
+	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<Transaction>& ptr)
 	{
 		return o << ptr->ToString();
 	}
 
-	wide_ostream& operator<<(wide_ostream& o, const std::weak_ptr<Transaction>& ptr)
+	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<Transaction>& ptr)
 	{
 		if (std::shared_ptr<Transaction> sharedPtr = ptr.lock())
 			o << sharedPtr->ToString();

@@ -7,12 +7,12 @@ namespace Divida
 	class Exception
 	{
 	public:
-		Exception(std::wstring message);
+		Exception(std::string message);
 		~Exception() = default;
 
-		std::wstring GetMessage();
+		std::string GetMessage();
 
 	private:
-		std::wstring m_message;
+		std::string m_message;
 	};
 }
