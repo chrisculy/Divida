@@ -5,8 +5,6 @@ TEMPLATE = lib
 CONFIG += staticlib
 PRECOMPILED_HEADER=pch.h
 INCLUDEPATH+=../external/pugixml/include
-LIBS+=-L../external/pugixml/lib \
-	-lpugixml
 
 SOURCES += \
 	Beneficiary.cpp \
