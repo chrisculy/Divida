@@ -21,6 +21,7 @@
 #include <string>
 #include <sstream>
 
+#ifndef __clang__
 #if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
 namespace std
 {
@@ -32,6 +33,7 @@ unique_ptr<T> make_unique(Args&& ...args)
 }
 
 }
+#endif
 #endif
 
 #endif
