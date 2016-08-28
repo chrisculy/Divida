@@ -1,4 +1,4 @@
-*.v12.suo
+*.suo
 *.sdf
 *.opensdf
 *.pfx
@@ -10,3 +10,7 @@ obj/
 Generated Files/
 ipch/
 *.pro.user*
+
+# project files
+projects/mac/
+projects/win/
