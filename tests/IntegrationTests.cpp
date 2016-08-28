@@ -1,22 +1,6 @@
-#include "pch.h"
+#include "divida_tests.h"
 
-#include <codecvt>
-#include <fstream>
-#include <locale>
-
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-
-namespace Divida
+TEST_CASE("Integration Test", "[integration]")
 {
-	namespace Tests
-	{
-		TEST_CLASS(IntegrationTests)
-		{
-		public:
-			TEST_METHOD(Basic)
-			{
-				Assert::Fail(L"Unimplemented!");
-			}
-		};
-	}
+	// TODO: Unimplemented!
 }

@@ -1,20 +1,10 @@
-#include "pch.h"
+#include "divida_tests.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+#include <divida/Person.h>
 
-namespace Divida
+TEST_CASE("Person - Construction", "[person]")
 {
-	namespace Tests
-	{
-		TEST_CLASS(PersonTests)
-		{
-		public:
-			TEST_METHOD(Construction)
-			{				
-				Person person(NAME_FRODO);
+	Divida::Person person(Divida::Tests::NAME_FRODO);
 				
-				Assert::AreEqual(NAME_FRODO, person.Name());
-			}
-		};
-	}
+	CHECK(Divida::Tests::NAME_FRODO == person.Name());
 }

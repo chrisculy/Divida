@@ -1,72 +1,58 @@
-#include "pch.h"
+#include "divida_tests.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+#include <divida/Item.h>
 
-namespace Divida
+TEST_CASE("Item - Construction", "[item]")
 {
-	namespace Tests
-	{
-		TEST_CLASS(ItemTests)
-		{
-		public:
-			TEST_METHOD(Construction)
-			{
-				auto name = std::wstring(L"Apples");
-				auto cost = 5.23f;
+	auto name = std::string("Apples");
+	auto cost = 5.23f;
 
-				Item item(name, cost);
+	Divida::Item item(name, cost);
 
-				Assert::AreEqual(name, item.Name());
-				Assert::AreEqual(cost, item.Cost());
-			}
+	CHECK(name == item.Name());
+	CHECK(cost == item.Cost());
+}
 
-			TEST_METHOD(ConstructionSingleBeneficiary)
-			{
-				auto name = std::wstring(L"Sting");
-				auto cost = 497.82f;
-				auto person = std::make_shared<Person>(NAME_FRODO);
-				auto beneficiary = std::make_shared<Beneficiary>(person);
+TEST_CASE("Item - ConstructionSingleBeneficiary", "[item]")
+{
+	auto name = std::string("Sting");
+	auto cost = 497.82f;
+	auto person = std::make_shared<Divida::Person>(Divida::Tests::NAME_FRODO);
+	auto beneficiary = std::make_shared<Divida::Beneficiary>(person);
 				
-				std::vector<std::shared_ptr<Beneficiary>> beneficiaries;
-				beneficiaries.push_back(beneficiary);
+	std::vector<std::shared_ptr<Divida::Beneficiary>> beneficiaries;
+	beneficiaries.push_back(beneficiary);
 
-				Item item(name, cost, beneficiaries);
+	Divida::Item item(name, cost, beneficiaries);
 
-				Assert::AreEqual(name, item.Name());
-				Assert::AreEqual(cost, item.Cost());
-				
-				AreEqual(beneficiaries, item.Beneficiaries());
-			}
+	CHECK(name == item.Name());
+	CHECK(cost == item.Cost());				
+	CHECK(beneficiaries == item.Beneficiaries());
+}
 
-			TEST_METHOD(ConstructionMultipleBeneficiaries)
-			{
-				auto name = std::wstring(L"Daggers");
-				auto cost = 986631.74f;
-				auto frodo = std::make_shared<Person>(NAME_FRODO);
-				auto sam = std::make_shared<Person>(NAME_SAM);
-				auto merry = std::make_shared<Person>(NAME_MERRY);
-				auto pippin = std::make_shared<Person>(NAME_PIPPIN);
+TEST_CASE("Item - ConstructionMultipleBeneficiaries", "[item]")
+{
+	auto name = std::string("Daggers");
+	auto cost = 986631.74f;
+	auto frodo = std::make_shared<Divida::Person>(Divida::Tests::NAME_FRODO);
+	auto sam = std::make_shared<Divida::Person>(Divida::Tests::NAME_SAM);
+	auto merry = std::make_shared<Divida::Person>(Divida::Tests::NAME_MERRY);
+	auto pippin = std::make_shared<Divida::Person>(Divida::Tests::NAME_PIPPIN);
 
-				auto beneficiaryFrodo = std::make_shared<Beneficiary>(frodo);
-				auto beneficiarySam = std::make_shared<Beneficiary>(sam);
-				auto beneficiaryMerry = std::make_shared<Beneficiary>(merry);
-				auto beneficiaryPippin = std::make_shared<Beneficiary>(pippin);
+	auto beneficiaryFrodo = std::make_shared<Divida::Beneficiary>(frodo);
+	auto beneficiarySam = std::make_shared<Divida::Beneficiary>(sam);
+	auto beneficiaryMerry = std::make_shared<Divida::Beneficiary>(merry);
+	auto beneficiaryPippin = std::make_shared<Divida::Beneficiary>(pippin);
 
-				std::vector<std::shared_ptr<Beneficiary>> beneficiaries;
-				beneficiaries.push_back(beneficiaryFrodo);
-				beneficiaries.push_back(beneficiarySam);
-				beneficiaries.push_back(beneficiaryMerry);
-				beneficiaries.push_back(beneficiaryPippin);
+	std::vector<std::shared_ptr<Divida::Beneficiary>> beneficiaries;
+	beneficiaries.push_back(beneficiaryFrodo);
+	beneficiaries.push_back(beneficiarySam);
+	beneficiaries.push_back(beneficiaryMerry);
+	beneficiaries.push_back(beneficiaryPippin);
 
-				Item item(name, cost, beneficiaries);
+	Divida::Item item(name, cost, beneficiaries);
 
-				Assert::AreEqual(name, item.Name());
-				Assert::AreEqual(cost, item.Cost());
-
-				AreEqual(beneficiaries, item.Beneficiaries());
-
-				Assert::Fail(L"Implement == operators for all classes!");
-			}
-		};
-	}
+	CHECK(name == item.Name());
+	CHECK(cost == item.Cost());
+	CHECK(beneficiaries == item.Beneficiaries());
 }

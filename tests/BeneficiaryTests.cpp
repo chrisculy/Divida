@@ -1,24 +1,14 @@
-#include "pch.h"
+#include "divida_tests.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+#include <divida/Beneficiary.h>
 
-namespace Divida
+TEST_CASE("Beneficiary - Construction", "[beneficiary]")
 {
-	namespace Tests
-	{
-		TEST_CLASS(BeneficiaryTests)
-		{
-		public:
-			TEST_METHOD(Construction)
-			{
-				auto person = std::make_shared<Person>(NAME_FRODO);
-				auto weight = 0.75f;
+	auto person = std::make_shared<Divida::Person>(Divida::Tests::NAME_FRODO);
+	auto weight = 0.75f;
 
-				Beneficiary beneficiary(person, weight);
+	Divida::Beneficiary beneficiary(person, weight);
 
-				Assert::AreEqual(person, beneficiary.Person());
-				Assert::AreEqual(weight, beneficiary.Weight(), FLOAT_EPSILON);
-			}
-		};
-	}
+	CHECK(person == beneficiary.Person());
+	CHECK(weight == Approx(beneficiary.Weight()));// , FLOAT_EPSILON);
 }

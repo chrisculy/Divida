@@ -1,29 +1,19 @@
-#include "pch.h"
+#include "divida_tests.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+#include <divida/Transaction.h>
 
-namespace Divida
+TEST_CASE("Transaction - Construction", "[transaction]")
 {
-	namespace Tests
-	{
-		TEST_CLASS(TransactionTests)
-		{
-		public:
-			TEST_METHOD(Construction)
-			{
-				auto fromPerson = std::make_shared<Person>(NAME_FRODO);
-				auto toPerson = std::make_shared<Person>(NAME_GANDALF);
+	auto fromPerson = std::make_shared<Divida::Person>(Divida::Tests::NAME_FRODO);
+	auto toPerson = std::make_shared<Divida::Person>(Divida::Tests::NAME_GANDALF);
 
-				auto fromPersonWeak = std::weak_ptr<Person>(fromPerson);
-				auto toPersonWeak = std::weak_ptr<Person>(toPerson);
-				auto amount = 12.35f;
+	auto fromPersonWeak = std::weak_ptr<Divida::Person>(fromPerson);
+	auto toPersonWeak = std::weak_ptr<Divida::Person>(toPerson);
+	auto amount = 12.35f;
 
-				Transaction transaction(fromPersonWeak, toPersonWeak, amount);
+	Divida::Transaction transaction(fromPersonWeak, toPersonWeak, amount);
 
-				Assert::AreEqual(fromPerson, transaction.FromPerson().lock());
-				Assert::AreEqual(toPerson, transaction.ToPerson().lock());
-				Assert::AreEqual(amount, transaction.Amount());
-			}
-		};
-	}
+	CHECK(fromPerson == transaction.FromPerson().lock());
+	CHECK(toPerson == transaction.ToPerson().lock());
+	CHECK(amount == transaction.Amount());
 }

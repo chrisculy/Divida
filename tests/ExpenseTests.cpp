@@ -1,69 +1,60 @@
-#include "pch.h"
+#include "divida_tests.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+#include <divida/Expense.h>
 
-namespace Divida
+TEST_CASE("Expense - Construction", "[expense]")
 {
-	namespace Tests
-	{
-		TEST_CLASS(ExpenseTests)
-		{
-		public:
-			TEST_METHOD(Construction)
-			{
-				auto payer = std::make_shared<Person>(NAME_GANDALF);
-				auto payerWeak = std::weak_ptr<Person>(payer);
-				auto name = std::wstring(L"Weapons");
-				auto date = Date::Create(17, 3, 1946);
+	auto payer = std::make_shared<Divida::Person>(Divida::Tests::NAME_GANDALF);
+	auto payerWeak = std::weak_ptr<Divida::Person>(payer);
+	auto name = std::string("Weapons");
+	auto date = Divida::Date::Create(17, 3, 1946);
 
-				Expense expense(name, date, payer);
+	Divida::Expense expense(name, date, payer);
 
-				Assert::AreEqual(name, expense.Name());
-				Assert::AreEqual(date, expense.Date());
-				Assert::AreEqual(payer, expense.Payer());
-			}
+	CHECK(name == expense.Name());
+	CHECK(date == expense.Date());
+	CHECK(payer == expense.Payer());
+}
 
-			TEST_METHOD(AddAndGetSingleItem)
-			{
-				auto payer = std::make_shared<Person>(NAME_GANDALF);
-				auto date = Date::Create(17, 3, 1946);
+TEST_CASE("Expense - AddAndGetSingleItem", "[expense]")
+{
+	auto payer = std::make_shared<Divida::Person>(Divida::Tests::NAME_GANDALF);
+	auto date = Divida::Date::Create(17, 3, 1946);
 
-				Expense expense(L"Weapons", date, payer);
+	Divida::Expense expense("Weapons", date, payer);
 
-				auto itemName = std::wstring(L"Sting");
-				auto itemCost = 15.37f;
-				auto person = std::make_shared<Person>(NAME_FRODO);
-				auto beneficiary = std::make_shared<Beneficiary>(person);
-				auto beneficiaries = std::vector<std::shared_ptr<Beneficiary>> { beneficiary };
+	auto itemName = std::string("Sting");
+	auto itemCost = 15.37f;
+	auto person = std::make_shared<Divida::Person>(Divida::Tests::NAME_FRODO);
+	auto beneficiary = std::make_shared<Divida::Beneficiary>(person);
+	auto beneficiaries = std::vector<std::shared_ptr<Divida::Beneficiary>> { beneficiary };
 
-				expense.AddItem(itemName, itemCost, beneficiaries);
+	expense.AddItem(itemName, itemCost, beneficiaries);
 
-				auto items = expense.Items();
-				Assert::AreEqual((size_t)1, items.size());
-				Assert::AreEqual(itemName, items[0]->Name());
-				Assert::AreEqual(itemCost, items[0]->Cost());
-				AreEqual(beneficiaries, items[0]->Beneficiaries());
-			}
+	auto items = expense.Items();
+	size_t expectedSize = 1;
+	CHECK(expectedSize == items.size());
+	CHECK(itemName == items[0]->Name());
+	CHECK(itemCost == items[0]->Cost());
+	CHECK(beneficiaries == items[0]->Beneficiaries());
+}
 
-			TEST_METHOD(AddAndGetMultipleItems)
-			{
-				Assert::Fail(L"Unimplemented!");
-			}
+TEST_CASE("Expense - AddAndGetMultipleItems", "[expense]")
+{
+	// TODO: Unimplemented!
+}
 
-			TEST_METHOD(SetAndGetDate)
-			{
-				Assert::Fail(L"Unimplemented!");
-			}
+TEST_CASE("Expense - SetAndGetDate", "[expense]")
+{
+	// TODO: Unimplemented!
+}
 
-			TEST_METHOD(SetAndGetPayer)
-			{
-				Assert::Fail(L"Unimplemented!");
-			}
+TEST_CASE("Expense - SetAndGetPayer", "[expense]")
+{
+	// TODO: Unimplemented!
+}
 
-			TEST_METHOD(Total)
-			{
-				Assert::Fail(L"Unimplemented!");
-			}
-		};
-	}
+TEST_CASE("Expense - Total", "[expense]")
+{
+	// TODO: Unimplemented!
 }

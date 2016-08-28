@@ -1,51 +1,38 @@
-#include "pch.h"
+#include "divida_tests.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+#include <divida/Report.h>
 
-namespace Divida
+namespace
 {
-	namespace Tests
-	{
-		TEST_CLASS(ReportTests)
-		{
-		public:
-			TEST_CLASS_INITIALIZE(ClassInitialize)
-			{
+
+const std::string c_reportName = "The Journey to Rivendell";
+
+}
+
+TEST_CASE("Report - Construction", "[report]")
+{
+	Divida::Report report(c_reportName);
+
+	CHECK(c_reportName == report.Name());
+}
+
+TEST_CASE("Report - AddAndGetPerson", "[report]")
+{
+	Divida::Report report(c_reportName);
 				
-			}
+	// TODO: Unimplemented!
+}
 
-			TEST_METHOD(Construction)
-			{
-				Report report(m_name);
+TEST_CASE("Report - NewAndGetExpense", "[report]")
+{
+	Divida::Report report(c_reportName);
 
-				Assert::AreEqual(m_name, report.Name());
-			}
+	// TODO: Unimplemented!
+}
 
-			TEST_METHOD(AddAndGetPerson)
-			{
-				Report report(m_name);
-				
-				Assert::Fail(L"Unimplemented!");
-			}
+TEST_CASE("Report - CalculateTransactions", "[report]")
+{
+	Divida::Report report(c_reportName);
 
-			TEST_METHOD(NewAndGetExpense)
-			{
-				Report report(m_name);
-
-				Assert::Fail(L"Unimplemented!");
-			}
-
-			TEST_METHOD(CalculateTransactions)
-			{
-				Report report(m_name);
-
-				Assert::Fail(L"Unimplemented!");
-			}
-
-		private:
-			static const std::wstring m_name;
-		};
-
-		const std::wstring ReportTests::m_name = std::wstring(L"The Journey to Rivendell");
-	}
+	// TODO: Unimplemented!
 }

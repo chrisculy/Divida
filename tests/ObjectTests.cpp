@@ -1,22 +1,11 @@
-#include "pch.h"
+#include "divida_tests.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+#include <divida/Object.h>
 
-namespace Divida
+TEST_CASE("Object - Construction", "[object]")
 {
-	namespace Tests
-	{
-		TEST_CLASS(ObjectTests)
-		{
-		public:
-			TEST_METHOD(Construction)
-			{
-				auto name = std::wstring(L"The Cube");
+	auto name = std::string("The Object");
+	Divida::Object object(name);
 
-				Object object(name);
-
-				Assert::AreEqual(name, object.Name());
-			}
-		};
-	}
+	CHECK(name == object.Name());
 }

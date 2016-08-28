@@ -62,3 +62,5 @@ set(divida_console_sources
 
 add_executable(divida-console ${divida_console_sources})
 target_link_libraries(divida-console divida)
+
+add_subdirectory(divida-tests)

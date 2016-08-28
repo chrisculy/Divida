@@ -1,55 +1,45 @@
-#include "pch.h"
+#include "divida_tests.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+#include <divida/Date.h>
 
-namespace Divida
+TEST_CASE("Date - Creation", "[date]")
 {
-	namespace Tests
-	{
-		TEST_CLASS(DateTests)
-		{
-		public:
-			TEST_METHOD(Creation)
-			{
-				int day = 4;
-				int month = 7;
-				int year = 2013;
-				Date date = Date::Create(day, month, year);
+	int day = 4;
+	int month = 7;
+	int year = 2013;
+	Divida::Date date = Divida::Date::Create(day, month, year);
 
-				Assert::AreEqual(day, date.Day());
-				Assert::AreEqual(month, date.Month());
-				Assert::AreEqual(year, date.Year());
-			}
+	CHECK(day == date.Day());
+	CHECK(month == date.Month());
+	CHECK(year == date.Year());
+}
 
-			TEST_METHOD(InvalidDay)
-			{
-				Assert::Fail(L"Unimplemented!");
-			}
+TEST_CASE("Date - InvalidDay", "[date]")
+{
+	// TODO: Unimplemented!
+}
 
-			TEST_METHOD(InvalidMonth)
-			{
-				Assert::Fail(L"Unimplemented!");
-			}
+TEST_CASE("Date - InvalidMonth", "[date]")
+{
+	// TODO: Unimplemented!
+}
 
-			TEST_METHOD(InvalidYear)
-			{
-				Assert::Fail(L"Unimplemented!");
-			}
+TEST_CASE("Date - InvalidYear", "[date]")
+{
+	// TODO: Unimplemented!
+}
 
-			TEST_METHOD(InvalidDayInMonth)
-			{
-				Assert::Fail(L"Unimplemented!");
-			}
+TEST_CASE("Date - InvalidDayInMonth", "[date]")
+{
+	// TODO: Unimplemented!
+}
 
-			TEST_METHOD(ValidDayInMonthInLeapYear)
-			{
-				Assert::Fail(L"Unimplemented!");
-			}
+TEST_CASE("Date - ValidDayInMonthInLeapYear", "[date]")
+{
+	// TODO: Unimplemented!
+}
 
-			TEST_METHOD(InvalidDayInMonthInNonLeapYear)
-			{
-				Assert::Fail(L"Unimplemented!");
-			}
-		};
-	}
+TEST_CASE("Date - InvalidDayInMonthInNonLeapYear", "[date]")
+{
+	// TODO: Unimplemented!
 }
