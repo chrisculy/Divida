@@ -6,6 +6,7 @@
 
 using namespace Divida;
 
+#if 0
 void CostcoTest();
 
 namespace
@@ -377,3 +378,8 @@ void CostcoTest()
 			std::cout << transaction << std::endl;
 	}
 }
+#else
+int main()
+{
+}
+#endif
