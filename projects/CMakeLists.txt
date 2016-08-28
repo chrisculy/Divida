@@ -37,20 +37,20 @@ include_directories(
 
 # divida library
 set(divida_sources
-	../src/Beneficiary.cpp
-	../src/BeneficiarySerializer.cpp
-	../src/Core.cpp
-	../src/Date.cpp
-	../src/Exception.cpp
-	../src/Expense.cpp
-	../src/Item.cpp
-	../src/Object.cpp
-	../src/ObjectSerializer.cpp
-	../src/Person.cpp
-	../src/PersonSerializer.cpp
-	../src/Report.cpp
-	../src/ReportXmlSerializer.cpp
-	../src/Transaction.cpp
+	../src/divida/Beneficiary.cpp
+	../src/divida/BeneficiarySerializer.cpp
+	../src/divida/Core.cpp
+	../src/divida/Date.cpp
+	../src/divida/Exception.cpp
+	../src/divida/Expense.cpp
+	../src/divida/Item.cpp
+	../src/divida/Object.cpp
+	../src/divida/ObjectSerializer.cpp
+	../src/divida/Person.cpp
+	../src/divida/PersonSerializer.cpp
+	../src/divida/Report.cpp
+	../src/divida/ReportXmlSerializer.cpp
+	../src/divida/Transaction.cpp
 )
 
 add_library(divida ${divida_sources})
