@@ -17,4 +17,9 @@ namespace Divida
 	{
 		return m_name;
 	}
+
+	std::string Object::ToString() const
+	{
+		return Name();
+	}
 }

@@ -10,9 +10,7 @@ namespace Divida
 
 	std::string Person::ToString() const
 	{
-		std::stringstream s;
-		s << Name();
-		return s.str();
+		return Object::ToString();
 	}
 
 	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<Person>& ptr)

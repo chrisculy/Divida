@@ -11,6 +11,7 @@ namespace Divida
 		Object(Object&& object);
 
 		const std::string& Name() const;
+		std::string ToString() const;
 
 	private:
 		std::string m_name;
