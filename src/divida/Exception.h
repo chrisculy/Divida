@@ -2,15 +2,15 @@
 
 #include <string>
 
-namespace Divida
+namespace divida
 {
-	class Exception
+	class exception
 	{
 	public:
-		Exception(std::string message);
-		~Exception() = default;
+		exception(std::string message);
+		~exception() = default;
 
-		std::string GetMessage();
+		std::string message();
 
 	private:
 		std::string m_message;

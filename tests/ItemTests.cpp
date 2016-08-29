@@ -2,57 +2,57 @@
 
 #include <divida/Item.h>
 
-TEST_CASE("Item - Construction", "[item]")
+TEST_CASE("item - Construction", "[item]")
 {
 	auto name = std::string("Apples");
 	auto cost = 5.23f;
 
-	Divida::Item item(name, cost);
+	divida::item item(name, cost);
 
-	CHECK(name == item.Name());
-	CHECK(cost == item.Cost());
+	CHECK(name == item.name());
+	CHECK(cost == item.cost());
 }
 
-TEST_CASE("Item - ConstructionSingleBeneficiary", "[item]")
+TEST_CASE("item - ConstructionSingleBeneficiary", "[item]")
 {
 	auto name = std::string("Sting");
 	auto cost = 497.82f;
-	auto person = std::make_shared<Divida::Person>(Divida::Tests::NAME_FRODO);
-	auto beneficiary = std::make_shared<Divida::Beneficiary>(person);
+	auto person = std::make_shared<divida::person>(divida::Tests::NAME_FRODO);
+	auto beneficiary = std::make_shared<divida::beneficiary>(person);
 				
-	std::vector<std::shared_ptr<Divida::Beneficiary>> beneficiaries;
+	std::vector<std::shared_ptr<divida::beneficiary>> beneficiaries;
 	beneficiaries.push_back(beneficiary);
 
-	Divida::Item item(name, cost, beneficiaries);
+	divida::item item(name, cost, beneficiaries);
 
-	CHECK(name == item.Name());
-	CHECK(cost == item.Cost());				
-	CHECK(beneficiaries == item.Beneficiaries());
+	CHECK(name == item.name());
+	CHECK(cost == item.cost());				
+	CHECK(beneficiaries == item.beneficiaries());
 }
 
-TEST_CASE("Item - ConstructionMultipleBeneficiaries", "[item]")
+TEST_CASE("item - ConstructionMultipleBeneficiaries", "[item]")
 {
 	auto name = std::string("Daggers");
 	auto cost = 986631.74f;
-	auto frodo = std::make_shared<Divida::Person>(Divida::Tests::NAME_FRODO);
-	auto sam = std::make_shared<Divida::Person>(Divida::Tests::NAME_SAM);
-	auto merry = std::make_shared<Divida::Person>(Divida::Tests::NAME_MERRY);
-	auto pippin = std::make_shared<Divida::Person>(Divida::Tests::NAME_PIPPIN);
+	auto frodo = std::make_shared<divida::person>(divida::Tests::NAME_FRODO);
+	auto sam = std::make_shared<divida::person>(divida::Tests::NAME_SAM);
+	auto merry = std::make_shared<divida::person>(divida::Tests::NAME_MERRY);
+	auto pippin = std::make_shared<divida::person>(divida::Tests::NAME_PIPPIN);
 
-	auto beneficiaryFrodo = std::make_shared<Divida::Beneficiary>(frodo);
-	auto beneficiarySam = std::make_shared<Divida::Beneficiary>(sam);
-	auto beneficiaryMerry = std::make_shared<Divida::Beneficiary>(merry);
-	auto beneficiaryPippin = std::make_shared<Divida::Beneficiary>(pippin);
+	auto beneficiaryFrodo = std::make_shared<divida::beneficiary>(frodo);
+	auto beneficiarySam = std::make_shared<divida::beneficiary>(sam);
+	auto beneficiaryMerry = std::make_shared<divida::beneficiary>(merry);
+	auto beneficiaryPippin = std::make_shared<divida::beneficiary>(pippin);
 
-	std::vector<std::shared_ptr<Divida::Beneficiary>> beneficiaries;
+	std::vector<std::shared_ptr<divida::beneficiary>> beneficiaries;
 	beneficiaries.push_back(beneficiaryFrodo);
 	beneficiaries.push_back(beneficiarySam);
 	beneficiaries.push_back(beneficiaryMerry);
 	beneficiaries.push_back(beneficiaryPippin);
 
-	Divida::Item item(name, cost, beneficiaries);
+	divida::item item(name, cost, beneficiaries);
 
-	CHECK(name == item.Name());
-	CHECK(cost == item.Cost());
-	CHECK(beneficiaries == item.Beneficiaries());
+	CHECK(name == item.name());
+	CHECK(cost == item.cost());
+	CHECK(beneficiaries == item.beneficiaries());
 }

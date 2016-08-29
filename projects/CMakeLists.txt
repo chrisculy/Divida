@@ -39,7 +39,6 @@ include_directories(
 set(divida_sources
 	../src/divida/Beneficiary.cpp
 	../src/divida/BeneficiarySerializer.cpp
-	../src/divida/Core.cpp
 	../src/divida/Date.cpp
 	../src/divida/Exception.cpp
 	../src/divida/Expense.cpp
@@ -50,13 +49,13 @@ set(divida_sources
 	../src/divida/PersonSerializer.cpp
 	../src/divida/Report.cpp
 	../src/divida/ReportXmlSerializer.cpp
+	../src/divida/to_string.cpp
 	../src/divida/Transaction.cpp
 )
 
 set(divida_headers
 	../src/divida/Beneficiary.h
 	../src/divida/BeneficiarySerializer.h
-	../src/divida/Core.h
 	../src/divida/Date.h
 	../src/divida/Exception.h
 	../src/divida/Expense.h
@@ -67,6 +66,7 @@ set(divida_headers
 	../src/divida/PersonSerializer.h
 	../src/divida/Report.h
 	../src/divida/ReportXmlSerializer.h
+	../src/divida/to_string.h
 	../src/divida/Transaction.h
 )
 

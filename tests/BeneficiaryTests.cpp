@@ -2,13 +2,13 @@
 
 #include <divida/Beneficiary.h>
 
-TEST_CASE("Beneficiary - Construction", "[beneficiary]")
+TEST_CASE("beneficiary - Construction", "[beneficiary]")
 {
-	auto person = std::make_shared<Divida::Person>(Divida::Tests::NAME_FRODO);
+	auto person = std::make_shared<divida::person>(divida::Tests::NAME_FRODO);
 	auto weight = 0.75f;
 
-	Divida::Beneficiary beneficiary(person, weight);
+	divida::beneficiary beneficiary(person, weight);
 
-	CHECK(person == beneficiary.Person());
-	CHECK(weight == Approx(beneficiary.Weight()));// , FLOAT_EPSILON);
+	CHECK(person == beneficiary.person());
+	CHECK(weight == Approx(beneficiary.weight()));// , FLOAT_EPSILON);
 }

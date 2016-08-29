@@ -1,48 +1,48 @@
-#include "pch.h"
-
 #include "Date.h"
 
-namespace Divida
+#include <sstream>
+
+namespace divida
 {
-	Date Date::Create(int day, int month, int year)
+	date date::create(int day, int month, int year)
 	{
 		// TODO: validate the date
-		return Date(day, month, year);
+		return date(day, month, year);
 	}
 
-	Date::Date(int day, int month, int year) : m_day(day), m_month(month), m_year(year)
+	date::date(int day, int month, int year) : m_day(day), m_month(month), m_year(year)
 	{
 	}
 
-	int Date::Day() const
+	int date::day() const
 	{
 		return m_day;
 	}
 
-	int Date::Month() const
+	int date::month() const
 	{
 		return m_month;
 	}
 
-	int Date::Year() const
+	int date::year() const
 	{
 		return m_year;
 	}
 
-	Date Date::operator=(const Date& date)
+	date date::operator=(const date& date)
 	{
-		return Date::Create(date.Day(), date.Month(), date.Year());
+		return date::create(date.day(), date.month(), date.year());
 	}
 	
-	bool Date::operator==(const Date& date) const
+	bool date::operator==(const date& date) const
 	{
 		return m_day == date.m_day && m_month == date.m_month && m_year == date.m_year;
 	}
 
-	std::string Date::ToString() const
+	std::string date::ToString() const
 	{
 		std::stringstream s;
-		s << m_month << L'/' << m_day << L'/' << m_year;
+		s << m_month << '/' << m_day << '/' << m_year;
 		return s.str();
 	}
 }

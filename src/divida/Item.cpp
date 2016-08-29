@@ -1,61 +1,62 @@
-#include "pch.h"
-
 #include "Item.h"
+#include "to_string.h"
 
-namespace Divida
+#include <sstream>
+
+namespace divida
 {
-	Item::Item(const std::string& name, float cost) : Object(name), m_cost(cost)
+	item::item(const std::string& name, float cost) : object(name), m_cost(cost)
 	{
 	}
 
-	Item::Item(const std::string& name, float cost, const std::vector<std::shared_ptr<Beneficiary>>& beneficiaries) : Object(name), m_cost(cost), m_beneficiaries(beneficiaries)
+	item::item(const std::string& name, float cost, const std::vector<std::shared_ptr<beneficiary>>& beneficiaries) : object(name), m_cost(cost), m_beneficiaries(beneficiaries)
 	{
 	}
 
-	const std::vector<std::shared_ptr<Beneficiary>>& Item::Beneficiaries() const
+	const std::vector<std::shared_ptr<beneficiary>>& item::beneficiaries() const
 	{
 		return m_beneficiaries;
 	}
 
-	float Item::Cost() const
+	float item::cost() const
 	{
 		return m_cost;
 	}
 
-	void Item::AddBeneficiary(const std::shared_ptr<Beneficiary> beneficiary)
+	void item::add_beneficiary(const std::shared_ptr<beneficiary> beneficiary)
 	{
 		// TODO: do smart stuff like combining two beneficiaries that reference the same person with different weights
 		// TODO: don't add a beneficiary if it is already in the list
 		m_beneficiaries.push_back(beneficiary);
 	}
 
-	void Item::RemoveBeneficiary(const std::shared_ptr<Beneficiary> beneficiary)
+	void item::remove_beneficiary(const std::shared_ptr<beneficiary> beneficiary)
 	{
-		std::vector<std::shared_ptr<Beneficiary>>::iterator iter = std::find(m_beneficiaries.begin(), m_beneficiaries.end(), beneficiary);
+		auto iter = std::find(m_beneficiaries.begin(), m_beneficiaries.end(), beneficiary);
 		if (iter != m_beneficiaries.end())
 			m_beneficiaries.erase(iter);
 	}
 
-	std::string Item::ToString() const
+	std::string item::ToString() const
 	{
 		std::stringstream s;
-		s << TO_STRING_OBJECT_BEGIN_TOKEN << Name() << TO_STRING_DELIMITER << m_cost << TO_STRING_DELIMITER << m_beneficiaries << TO_STRING_OBJECT_END_TOKEN;
+		s << c_toStringObjectBeginToken << name() << c_toStringDelimiter << m_cost << c_toStringDelimiter << m_beneficiaries << c_toStringObjectEndToken;
 		return s.str();
 	}
 
-	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<Item>& ptr)
+	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<item>& ptr)
 	{
 		return o << ptr->ToString();
 	}
 
-	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<Item>& ptr)
+	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<item>& ptr)
 	{
 		return o << ptr->ToString();
 	}
 
-	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<Item>& ptr)
+	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<item>& ptr)
 	{
-		if (std::shared_ptr<Item> sharedPtr = ptr.lock())
+		if (std::shared_ptr<item> sharedPtr = ptr.lock())
 			o << sharedPtr->ToString();
 
 		return o;

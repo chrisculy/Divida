@@ -3,18 +3,18 @@
 #include "Beneficiary.h"
 #include "IXmlSerializer.h"
 
-namespace Divida
+namespace divida
 {
-	class BeneficiarySerializer : public IXmlSerializer<Beneficiary>
+	class beneficiary_serializer : public ixml_serializer<beneficiary>
 	{
 	public:
-		virtual const std::string& ElementName() const override;
-		virtual Beneficiary Read(const pugi::xml_node& node) override;
-		virtual void Write(pugi::xml_document & document, const Beneficiary& element) override;
+		virtual const std::string& element_name() const override;
+		virtual beneficiary read(const pugi::xml_node& node) override;
+		virtual void write(pugi::xml_document & document, const beneficiary& element) override;
 
 	private:
-		static const std::string ELEMENT_NAME;
-		static const std::string PERSON_ATTRIBUTE;
-		static const std::string WEIGHT_ATTRIBUTE;
+		static const std::string c_elementName;
+		static const std::string c_personAttribute;
+		static const std::string c_weightAttribute;
 	};
 }

@@ -2,59 +2,59 @@
 
 #include <divida/Expense.h>
 
-TEST_CASE("Expense - Construction", "[expense]")
+TEST_CASE("expense - Construction", "[expense]")
 {
-	auto payer = std::make_shared<Divida::Person>(Divida::Tests::NAME_GANDALF);
-	auto payerWeak = std::weak_ptr<Divida::Person>(payer);
+	auto payer = std::make_shared<divida::person>(divida::Tests::NAME_GANDALF);
+	auto payerWeak = std::weak_ptr<divida::person>(payer);
 	auto name = std::string("Weapons");
-	auto date = Divida::Date::Create(17, 3, 1946);
+	auto date = divida::date::create(17, 3, 1946);
 
-	Divida::Expense expense(name, date, payer);
+	divida::expense expense(name, date, payer);
 
-	CHECK(name == expense.Name());
-	CHECK(date == expense.Date());
-	CHECK(payer == expense.Payer());
+	CHECK(name == expense.name());
+	CHECK(date == expense.date());
+	CHECK(payer == expense.payer());
 }
 
-TEST_CASE("Expense - AddAndGetSingleItem", "[expense]")
+TEST_CASE("expense - AddAndGetSingleItem", "[expense]")
 {
-	auto payer = std::make_shared<Divida::Person>(Divida::Tests::NAME_GANDALF);
-	auto date = Divida::Date::Create(17, 3, 1946);
+	auto payer = std::make_shared<divida::person>(divida::Tests::NAME_GANDALF);
+	auto date = divida::date::create(17, 3, 1946);
 
-	Divida::Expense expense("Weapons", date, payer);
+	divida::expense expense("Weapons", date, payer);
 
 	auto itemName = std::string("Sting");
 	auto itemCost = 15.37f;
-	auto person = std::make_shared<Divida::Person>(Divida::Tests::NAME_FRODO);
-	auto beneficiary = std::make_shared<Divida::Beneficiary>(person);
-	auto beneficiaries = std::vector<std::shared_ptr<Divida::Beneficiary>> { beneficiary };
+	auto person = std::make_shared<divida::person>(divida::Tests::NAME_FRODO);
+	auto beneficiary = std::make_shared<divida::beneficiary>(person);
+	auto beneficiaries = std::vector<std::shared_ptr<divida::beneficiary>> { beneficiary };
 
-	expense.AddItem(itemName, itemCost, beneficiaries);
+	expense.add_item(itemName, itemCost, beneficiaries);
 
-	auto items = expense.Items();
+	auto items = expense.items();
 	size_t expectedSize = 1;
 	CHECK(expectedSize == items.size());
-	CHECK(itemName == items[0]->Name());
-	CHECK(itemCost == items[0]->Cost());
-	CHECK(beneficiaries == items[0]->Beneficiaries());
+	CHECK(itemName == items[0]->name());
+	CHECK(itemCost == items[0]->cost());
+	CHECK(beneficiaries == items[0]->beneficiaries());
 }
 
-TEST_CASE("Expense - AddAndGetMultipleItems", "[expense]")
+TEST_CASE("expense - AddAndGetMultipleItems", "[expense]")
 {
 	// TODO: Unimplemented!
 }
 
-TEST_CASE("Expense - SetAndGetDate", "[expense]")
+TEST_CASE("expense - SetAndGetDate", "[expense]")
 {
 	// TODO: Unimplemented!
 }
 
-TEST_CASE("Expense - SetAndGetPayer", "[expense]")
+TEST_CASE("expense - SetAndGetPayer", "[expense]")
 {
 	// TODO: Unimplemented!
 }
 
-TEST_CASE("Expense - Total", "[expense]")
+TEST_CASE("expense - total", "[expense]")
 {
 	// TODO: Unimplemented!
 }

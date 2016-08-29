@@ -2,24 +2,24 @@
 
 #include <string>
 
-namespace Divida
+namespace divida
 {
-	class Date
+	class date
 	{
 	public:
-		static Date Create(int day, int month, int year);
+		static date create(int day, int month, int year);
 
-		int Day() const;
-		int Month() const;
-		int Year() const;
+		int day() const;
+		int month() const;
+		int year() const;
 
-		Date operator=(const Date& date);
-		bool operator==(const Date& date) const;
+		date operator=(const date& date);
+		bool operator==(const date& date) const;
 
 		std::string ToString() const;
 
 	private:
-		Date(int day, int month, int year);
+		date(int day, int month, int year);
 
 		const int m_day;
 		const int m_month;

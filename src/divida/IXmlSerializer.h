@@ -2,14 +2,14 @@
 
 #include <pugixml.hpp>
 
-namespace Divida
+namespace divida
 {
-	template<typename T> class IXmlSerializer
+	template<typename T> class ixml_serializer
 	{
 	public:
-		virtual const std::string& ElementName() const = 0;
+		virtual const std::string& element_name() const = 0;
 
-		virtual T Read(const pugi::xml_node& node) = 0;
-		virtual void Write(pugi::xml_document & document, const T& element) = 0;
+		virtual T read(const pugi::xml_node& node) = 0;
+		virtual void write(pugi::xml_document & document, const T& element) = 0;
 	};
 }

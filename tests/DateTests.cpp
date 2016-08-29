@@ -2,44 +2,44 @@
 
 #include <divida/Date.h>
 
-TEST_CASE("Date - Creation", "[date]")
+TEST_CASE("date - Creation", "[date]")
 {
 	int day = 4;
 	int month = 7;
 	int year = 2013;
-	Divida::Date date = Divida::Date::Create(day, month, year);
+	divida::date date = divida::date::create(day, month, year);
 
-	CHECK(day == date.Day());
-	CHECK(month == date.Month());
-	CHECK(year == date.Year());
+	CHECK(day == date.day());
+	CHECK(month == date.month());
+	CHECK(year == date.year());
 }
 
-TEST_CASE("Date - InvalidDay", "[date]")
+TEST_CASE("date - InvalidDay", "[date]")
 {
 	// TODO: Unimplemented!
 }
 
-TEST_CASE("Date - InvalidMonth", "[date]")
+TEST_CASE("date - InvalidMonth", "[date]")
 {
 	// TODO: Unimplemented!
 }
 
-TEST_CASE("Date - InvalidYear", "[date]")
+TEST_CASE("date - InvalidYear", "[date]")
 {
 	// TODO: Unimplemented!
 }
 
-TEST_CASE("Date - InvalidDayInMonth", "[date]")
+TEST_CASE("date - InvalidDayInMonth", "[date]")
 {
 	// TODO: Unimplemented!
 }
 
-TEST_CASE("Date - ValidDayInMonthInLeapYear", "[date]")
+TEST_CASE("date - ValidDayInMonthInLeapYear", "[date]")
 {
 	// TODO: Unimplemented!
 }
 
-TEST_CASE("Date - InvalidDayInMonthInNonLeapYear", "[date]")
+TEST_CASE("date - InvalidDayInMonthInNonLeapYear", "[date]")
 {
 	// TODO: Unimplemented!
 }

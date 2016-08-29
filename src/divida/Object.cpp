@@ -1,25 +1,23 @@
-#include "pch.h"
-
 #include "Object.h"
 
-namespace Divida
+namespace divida
 {
-	Object::Object(const std::string& name) : m_name(name)
+	object::object(const std::string& name) : m_name(name)
 	{
 	}
 
-	Object::Object(Object&& object)
+	object::object(object&& object)
 	{
 		m_name = std::move(object.m_name);
 	}
 
-	const std::string& Object::Name() const
+	const std::string& object::name() const
 	{
 		return m_name;
 	}
 
-	std::string Object::ToString() const
+	std::string object::ToString() const
 	{
-		return Name();
+		return name();
 	}
 }

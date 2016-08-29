@@ -4,43 +4,43 @@
 
 #include <pugixml.hpp>
 
-namespace Divida
+namespace divida
 {
-	class ReportXmlSerializer
+	class report_xml_serializer
 	{
 	public:
-		static std::unique_ptr<Report> Read(const pugi::xml_node& node);
-		static void Write(pugi::xml_node& node, const Report& report);
+		static std::unique_ptr<report> read(const pugi::xml_node& node);
+		static void write(pugi::xml_node& node, const report& report);
 
 	private:
-		static bool ReadAttribute(const pugi::xml_node& node, const std::string& attributeName, std::string& attributeValue);
-		static bool ReadAttribute(const pugi::xml_node& node, const std::string& attributeName, int& attributeValue);
-		static bool ReadAttribute(const pugi::xml_node& node, const std::string& attributeName, float& attributeValue);
-		template<typename T> static bool WriteAttribute(pugi::xml_node& node, const std::string& attributeName, const T& attributeValue);
+		static bool read_attribute(const pugi::xml_node& node, const std::string& attributeName, std::string& attributeValue);
+		static bool read_attribute(const pugi::xml_node& node, const std::string& attributeName, int& attributeValue);
+		static bool read_attribute(const pugi::xml_node& node, const std::string& attributeName, float& attributeValue);
+		template<typename T> static bool write_attribute(pugi::xml_node& node, const std::string& attributeName, const T& attributeValue);
 
-		static const std::string REPORT_ELEMENT;
-		static const std::string PERSONS_ELEMENT;
-		static const std::string PERSON_ELEMENT;
-		static const std::string EXPENSES_ELEMENT;
-		static const std::string EXPENSE_ELEMENT;
-		static const std::string BENEFICIARIES_ELEMENT;
-		static const std::string BENEFICIARY_ELEMENT;
-		static const std::string ITEMS_ELEMENT;
-		static const std::string ITEM_ELEMENT;
-		static const std::string DATE_ELEMENT;
+		static const std::string c_reportElement;
+		static const std::string c_personsElement;
+		static const std::string c_personElement;
+		static const std::string c_expensesElement;
+		static const std::string c_expenseElement;
+		static const std::string c_beneficiariesElement;
+		static const std::string c_beneficiaryElement;
+		static const std::string c_itemsElement;
+		static const std::string c_itemElement;
+		static const std::string c_dateElement;
 
-		static const std::string NAME_ATTRIBUTE;
-		static const std::string COUNT_ATTRIBUTE;
-		static const std::string PAYER_ATTRIBUTE;
-		static const std::string PERSON_ATTRIBUTE;
-		static const std::string WEIGHT_ATTRIBUTE;
-		static const std::string COST_ATTRIBUTE;
-		static const std::string DAY_ATTRIBUTE;
-		static const std::string MONTH_ATTRIBUTE;
-		static const std::string YEAR_ATTRIBUTE;
+		static const std::string c_nameAttribute;
+		static const std::string c_countAttribute;
+		static const std::string c_payerAttribute;
+		static const std::string c_personAttribute;
+		static const std::string c_weightAttribute;
+		static const std::string c_costAttribute;
+		static const std::string c_dayAttribute;
+		static const std::string c_monthAttribute;
+		static const std::string c_yearAttribute;
 	};
 
-	template<typename T> bool ReportXmlSerializer::WriteAttribute(pugi::xml_node& node, const std::string& attributeName, const T& attributeValue)
+	template<typename T> bool report_xml_serializer::write_attribute(pugi::xml_node& node, const std::string& attributeName, const T& attributeValue)
 	{
 		auto attribute = node.append_attribute(attributeName.c_str());
 		if (attribute == nullptr)

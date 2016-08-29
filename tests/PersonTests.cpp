@@ -2,9 +2,9 @@
 
 #include <divida/Person.h>
 
-TEST_CASE("Person - Construction", "[person]")
+TEST_CASE("person - Construction", "[person]")
 {
-	Divida::Person person(Divida::Tests::NAME_FRODO);
+	divida::person person(divida::Tests::NAME_FRODO);
 				
-	CHECK(Divida::Tests::NAME_FRODO == person.Name());
+	CHECK(divida::Tests::NAME_FRODO == person.name());
 }

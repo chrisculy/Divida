@@ -1,5 +1,3 @@
-#include "pch.h"
-
 #include "Report.h"
 #include "ReportXmlSerializer.h"
 
@@ -10,81 +8,81 @@
 #include <set>
 #include <numeric>
 
-namespace Divida
+namespace divida
 {
-	Report::Report(const std::string& name) : Object(name)
+	report::report(const std::string& name) : object(name)
 	{
 	}
 
-	void Report::AddPerson(const std::string& name)
+	void report::add_person(const std::string& name)
 	{
-		m_persons.push_back(std::make_shared<Person>(name));
+		m_persons.push_back(std::make_shared<person>(name));
 	}
 
-	const std::shared_ptr<Person> Report::GetPerson(const std::string& name) const
+	const std::shared_ptr<person> report::get_person(const std::string& name) const
 	{
 		for (auto person : m_persons)
 		{
-			if (person->Name() == name)
+			if (person->name() == name)
 				return person;
 		}
 
 		return nullptr;
 	}
 
-	const std::shared_ptr<Expense> Report::NewExpense(const std::string& name, const Date& date, const std::shared_ptr<Person> payer)
+	const std::shared_ptr<expense> report::new_expense(const std::string& name, const date& date, const std::shared_ptr<person> payer)
 	{
 		// TODO: make sure the name is unique (this also has to work even if the name is changed later on from the Expense API).
 		// TODO: only insert the expense if it doesn't already exist (related to above).
-		std::shared_ptr<Expense> expense = std::make_shared<Expense>(name, date, payer);
+		auto expense = std::make_shared<divida::expense>(name, date, payer);
 		m_expenses.push_back(expense);
 		return expense;
 	}
 
-	const std::shared_ptr<Expense> Report::GetExpense(const std::string& name) const
+	const std::shared_ptr<expense> report::get_expense(const std::string& name) const
 	{
 		for (auto expense : m_expenses)
 		{
-			if (expense->Name() == name)
+			if (expense->name() == name)
 				return expense;
 		}
 
 		return nullptr;
 	}
 
-	const std::vector<std::shared_ptr<Person>>& Report::Persons() const
+	const std::vector<std::shared_ptr<person>>& report::persons() const
 	{
 		return m_persons;
 	}
 
-	const std::vector<std::shared_ptr<Expense>>& Report::Expenses() const
+	const std::vector<std::shared_ptr<expense>>& report::expenses() const
 	{
 		return m_expenses;
 	}
 
-	std::vector<std::shared_ptr<Transaction>> Report::CalculateTransactions()
+	std::vector<std::shared_ptr<transaction>> report::calculate_transactions()
 	{
 		// Calculate total owing amounts for each person, subtracting the expenses they paid for
 		m_owingTotals.clear();
 		for (auto expense : m_expenses)
 		{
-			AddPaymentForPerson(expense->Payer(), expense->Name(), expense->Total());
+			add_payment_for_person(expense->payer(), expense->name(), expense->total());
 
-			for (auto item : expense->Items())
+			for (auto item : expense->items())
 			{
-				float totalWeightFactor = 1.0f / std::accumulate<std::vector<std::shared_ptr<Beneficiary>>::const_iterator, float>(item->Beneficiaries().begin(), item->Beneficiaries().end(), 0, 
-					[](float total, std::shared_ptr<Beneficiary> current) { return total + current->Weight(); });
+				float totalWeightFactor = 1.0f / std::accumulate<std::vector<std::shared_ptr<beneficiary>>::const_iterator, float>(item->beneficiaries().begin(), item->beneficiaries().end(), 0, 
+					[](float total, std::shared_ptr<beneficiary> current) { return total + current->weight(); });
 
-				for (auto beneficiary : item->Beneficiaries())
-					AddExpenseForPerson(beneficiary->Person(), item->Name(), beneficiary->Weight() * totalWeightFactor, item->Cost());
+				for (auto beneficiary : item->beneficiaries())
+					add_expense_for_person(beneficiary->person(), item->name(), beneficiary->weight() * totalWeightFactor, item->cost());
 			}
 		}
 
 		// Sort the owing totals in ascending order so the people who should be paid are at the front.
-		std::sort(m_owingTotals.begin(), m_owingTotals.end(), [](const std::pair<std::weak_ptr<Person>, float>& a, const std::pair<std::weak_ptr<Person>, float>& b) { return a.second < b.second; });
+		std::sort(m_owingTotals.begin(), m_owingTotals.end(), [](const std::pair<std::weak_ptr<person>, float>& a, const std::pair<std::weak_ptr<person>, float>& b) { return a.second < b.second; });
 
 		// Calculate the needed transactions.
-		std::vector<std::shared_ptr<Transaction>> transactions;
+		std::vector<std::shared_ptr<transaction>> transactions;
 		auto payToIter = m_owingTotals.begin();
 		auto payFromIter = std::prev(m_owingTotals.end());
 		while (true)
@@ -93,7 +91,7 @@ namespace Divida
 			assert(payFromIter->second >= 0);
 				
 			float amount = std::min(payFromIter->second, std::abs(payToIter->second));
-			transactions.push_back(std::make_shared<Transaction>(payFromIter->first, payToIter->first, amount));
+			transactions.push_back(std::make_shared<transaction>(payFromIter->first, payToIter->first, amount));
 
 			payFromIter->second -= amount;
 			payToIter->second += amount;
@@ -118,58 +116,58 @@ namespace Divida
 		return transactions;
 	}
 
-	const ReportInfo* Report::GetReportInfoForPerson(const std::string& name) const
+	const report_info* report::get_report_info_for_person(const std::string& name) const
 	{
-		auto iter = std::find_if(m_info.begin(), m_info.end(), [&name](const std::pair<std::shared_ptr<Person>, ReportInfo>& current) { return current.first->Name() == name; });
+		auto iter = std::find_if(m_info.begin(), m_info.end(), [&name](const std::pair<std::shared_ptr<person>, report_info>& current) { return current.first->name() == name; });
 		if (iter != m_info.end())
 			return &iter->second;
 
 		return nullptr;
 	}
 
-	unsigned int Report::GetItemNamePrintWidth() const
+	unsigned int report::get_item_name_print_width() const
 	{
 		const unsigned int padding = 4;
 		unsigned int width = 20;
 		for (auto expense : m_expenses)
 		{
-			for (auto item : expense->Items())
+			for (auto item : expense->items())
 			{
-				if (item->Name().length() > width)
-					width = item->Name().length();
+				if (item->name().length() > width)
+					width = item->name().length();
 			}
 		}
 		
 		return width + padding;
 	}
 
-	void Report::AddPaymentForPerson(const std::shared_ptr<Person>& person, const std::string& name, float amount)
+	void report::add_payment_for_person(const std::shared_ptr<person>& person, const std::string& name, float amount)
 	{
-		m_info[person].Payments.push_back(ReportPayment(name, amount));
-		UpdateAmount(person, -amount);
+		m_info[person].payments.push_back(report_payment(name, amount));
+		update_amount(person, -amount);
 	}
 
-	void Report::AddExpenseForPerson(const std::shared_ptr<Person>& person, const std::string& name, float weight, float amount)
+	void report::add_expense_for_person(const std::shared_ptr<person>& person, const std::string& name, float weight, float amount)
 	{
-		m_info[person].Expenses.push_back(ReportExpense(name, weight, amount));
-		UpdateAmount(person, weight * amount);
+		m_info[person].expenses.push_back(report_expense(name, weight, amount));
+		update_amount(person, weight * amount);
 	}
 
-	void Report::UpdateAmount(const std::weak_ptr<Person>& person, float difference)
+	void report::update_amount(const std::weak_ptr<person>& person, float difference)
 	{
-		Report::OwingTotalsTable::iterator owingTotal = std::find_if(m_owingTotals.begin(), m_owingTotals.end(),
-			[&person](const std::pair<std::weak_ptr<Person>, float>& current) { return current.first.lock() == person.lock(); });
+		report::owing_totals_table::iterator owingTotal = std::find_if(m_owingTotals.begin(), m_owingTotals.end(),
+			[&person](const std::pair<std::weak_ptr<divida::person>, float>& current) { return current.first.lock() == person.lock(); });
 		if (owingTotal == m_owingTotals.end())
 			m_owingTotals.push_back(std::make_pair(person, difference));
 		else
 			owingTotal->second += difference;
 	}
 
-	ReportExpense::ReportExpense(const std::string& name, float weight, float amount) : Name(name), Weight(weight), Amount(amount)
+	report_expense::report_expense(const std::string& name, float weight, float amount) : name(name), weight(weight), amount(amount)
 	{
 	}
 
-	ReportPayment::ReportPayment(const std::string& name, float amount) : Name(name), Amount(amount)
+	report_payment::report_payment(const std::string& name, float amount) : name(name), amount(amount)
 	{
 	}
 }

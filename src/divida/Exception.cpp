@@ -1,13 +1,13 @@
 #include "Exception.h"
 
-namespace Divida
+namespace divida
 {
 
-Exception::Exception(std::string message) : m_message(message)
+exception::exception(std::string message) : m_message(message)
 {
 }
 
-std::string Exception::GetMessage()
+std::string exception::message()
 {
 	return m_message;
 }

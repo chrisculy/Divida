@@ -1,22 +1,21 @@
 #pragma once
 
+#include "Object.h"
+
 #include <memory>
 #include <string>
 
-#include "Core.h"
-#include "Object.h"
-
-namespace Divida
+namespace divida
 {
-	class Person : public Object
+	class person : public object
 	{
 	public:
-		Person(const std::string& name);
+		person(const std::string& name);
 
 		std::string ToString() const;
 	};
 
-	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<Person>& ptr);
-	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<Person>& ptr);
-	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<Person>& ptr);
+	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<person>& ptr);
+	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<person>& ptr);
+	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<person>& ptr);
 }

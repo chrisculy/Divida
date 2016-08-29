@@ -1,49 +1,50 @@
-#include "pch.h"
-
 #include "Transaction.h"
 
-namespace Divida
+#include <iomanip>
+#include <sstream>
+
+namespace divida
 {
-	Transaction::Transaction(const std::weak_ptr<Person> fromPerson, const std::weak_ptr<Person> toPerson, float amount)
+	transaction::transaction(const std::weak_ptr<person> fromPerson, const std::weak_ptr<person> toPerson, float amount)
 		: m_fromPerson(fromPerson), m_toPerson(toPerson), m_amount(amount)
 	{
 	}
 
-	const std::weak_ptr<Person> Transaction::FromPerson() const
+	const std::weak_ptr<person> transaction::from_person() const
 	{
 		return m_fromPerson;
 	}
 
-	const std::weak_ptr<Person> Transaction::ToPerson() const
+	const std::weak_ptr<person> transaction::to_person() const
 	{
 		return m_toPerson;
 	}
 
-	float Transaction::Amount() const
+	float transaction::amount() const
 	{
 		return m_amount;
 	}
 
-	std::string Transaction::ToString() const
+	std::string transaction::ToString() const
 	{
 		std::stringstream s;
 		s << m_fromPerson << " pays " << "$" << std::setiosflags(std::ios::fixed) << std::setprecision(2) << m_amount << " to " << m_toPerson;
 		return s.str();
 	}
 
-	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<Transaction>& ptr)
+	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<transaction>& ptr)
 	{
 		return o << ptr->ToString();
 	}
 
-	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<Transaction>& ptr)
+	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<transaction>& ptr)
 	{
 		return o << ptr->ToString();
 	}
 
-	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<Transaction>& ptr)
+	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<transaction>& ptr)
 	{
-		if (std::shared_ptr<Transaction> sharedPtr = ptr.lock())
+		if (std::shared_ptr<transaction> sharedPtr = ptr.lock())
 			o << sharedPtr->ToString();
 
 		return o;

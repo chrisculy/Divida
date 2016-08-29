@@ -1,29 +1,28 @@
 #pragma once
 
-#include <memory>
-
-#include "Core.h"
 #include "Person.h"
 
-namespace Divida
+#include <memory>
+
+namespace divida
 {
-	class Transaction
+	class transaction
 	{
 	public:
-		Transaction(const std::weak_ptr<Person> fromPerson, const std::weak_ptr<Person> toPerson, float amount);
+		transaction(const std::weak_ptr<person> fromPerson, const std::weak_ptr<person> toPerson, float amount);
 
-		const std::weak_ptr<Person> FromPerson() const;
-		const std::weak_ptr<Person> ToPerson() const;
-		float Amount() const;
+		const std::weak_ptr<person> from_person() const;
+		const std::weak_ptr<person> to_person() const;
+		float amount() const;
 		std::string ToString() const;
 
 	private:
-		const std::weak_ptr<Person> m_fromPerson;
-		const std::weak_ptr<Person> m_toPerson;
+		const std::weak_ptr<person> m_fromPerson;
+		const std::weak_ptr<person> m_toPerson;
 		const float m_amount;
 	};
 
-	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<Transaction>& ptr);
-	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<Transaction>& ptr);
-	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<Transaction>& ptr);
+	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<transaction>& ptr);
+	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<transaction>& ptr);
+	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<transaction>& ptr);
 }

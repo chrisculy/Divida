@@ -2,10 +2,10 @@
 
 #include <divida/Object.h>
 
-TEST_CASE("Object - Construction", "[object]")
+TEST_CASE("object - Construction", "[object]")
 {
-	auto name = std::string("The Object");
-	Divida::Object object(name);
+	auto name = std::string("The object");
+	divida::object object(name);
 
-	CHECK(name == object.Name());
+	CHECK(name == object.name());
 }

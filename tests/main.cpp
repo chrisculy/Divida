@@ -12,37 +12,37 @@
 
 namespace Catch
 {
-	inline std::string toString(const Divida::Beneficiary& beneficiary)
+	inline std::string toString(const divida::beneficiary& beneficiary)
 	{
 		return beneficiary.ToString();
 	}
 
-	inline std::string toString(const Divida::Date& date)
+	inline std::string toString(const divida::date& date)
 	{
 		return date.ToString();
 	}
 
-	inline std::string toString(const Divida::Expense& expense)
+	inline std::string toString(const divida::expense& expense)
 	{
 		return expense.ToString();
 	}
 
-	inline std::string toString(const Divida::Item& item)
+	inline std::string toString(const divida::item& item)
 	{
 		return item.ToString();
 	}
 
-	inline std::string toString(const Divida::Object& object)
+	inline std::string toString(const divida::object& object)
 	{
 		return object.ToString();
 	}
 
-	inline std::string toString(const Divida::Person& person)
+	inline std::string toString(const divida::person& person)
 	{
 		return person.ToString();
 	}
 
-	inline std::string toString(const Divida::Transaction& transaction)
+	inline std::string toString(const divida::transaction& transaction)
 	{
 		return transaction.ToString();
 	}

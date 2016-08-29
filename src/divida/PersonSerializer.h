@@ -3,17 +3,17 @@
 #include "IXmlSerializer.h"
 #include "Person.h"
 
-namespace Divida
+namespace divida
 {
-	class PersonSerializer : public IXmlSerializer<Person>
+	class person_serializer : public ixml_serializer<person>
 	{
 	public:
-		virtual const std::string& ElementName() const override;
-		virtual Person Read(const pugi::xml_node& node) override;
-		virtual void Write(pugi::xml_document & document, const Person& element) override;
+		virtual const std::string& element_name() const override;
+		virtual person read(const pugi::xml_node& node) override;
+		virtual void write(pugi::xml_document & document, const person& element) override;
 
 	private:
-		static const std::string ELEMENT_NAME;
-		static const std::string NAME_ATTRIBUTE;
+		static const std::string c_elementName;
+		static const std::string c_nameAttribute;
 	};
 }

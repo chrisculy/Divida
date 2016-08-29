@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace Divida
+namespace divida
 {
 	namespace Tests
 	{

@@ -1,48 +1,47 @@
-#include "pch.h"
 #include "PersonSerializer.h"
 
 #include "Exception.h"
 #include "ObjectSerializer.h"
 
-namespace Divida
+namespace divida
 {
-	const std::string PersonSerializer::ELEMENT_NAME = "person";
-	const std::string PersonSerializer::NAME_ATTRIBUTE = "name";
+	const std::string person_serializer::c_elementName = "person";
+	const std::string person_serializer::c_nameAttribute = "name";
 
-	const std::string& PersonSerializer::ElementName() const
+	const std::string& person_serializer::element_name() const
 	{
-		return ELEMENT_NAME;
+		return c_elementName;
 	}
 
-	Person PersonSerializer::Read(const pugi::xml_node& node)
+	person person_serializer::read(const pugi::xml_node& node)
 	{
 		std::string nodeName(node.name());
-		if (nodeName == ElementName())
+		if (nodeName == element_name())
 		{
-			auto nameAttribute = node.attribute(NAME_ATTRIBUTE.c_str());
+			auto nameAttribute = node.attribute(c_nameAttribute.c_str());
 			if (nameAttribute != nullptr)
 			{
 				if (nameAttribute.value() != nullptr)
 				{
-					return Person(nameAttribute.value());
+					return person(nameAttribute.value());
 				}
 			}
 		}
 
-		throw Exception("Failed to read Person from XML.");
+		throw exception("Failed to read person from XML.");
 	}
 
-	void PersonSerializer::Write(pugi::xml_document& document, const Person& element)
+	void person_serializer::write(pugi::xml_document& document, const person& element)
 	{
-		auto node = document.append_child(ElementName().c_str());
+		auto node = document.append_child(element_name().c_str());
 		if (node == nullptr)
 			return;
 
-		auto nameAttribute = node.append_attribute(NAME_ATTRIBUTE.c_str());
+		auto nameAttribute = node.append_attribute(c_nameAttribute.c_str());
 		if (nameAttribute == nullptr)
 			return;
 
-		if (!nameAttribute.set_value(element.Name().c_str()))
+		if (!nameAttribute.set_value(element.name().c_str()))
 			return;
 	}
 }

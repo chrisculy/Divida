@@ -2,18 +2,18 @@
 
 #include <divida/Transaction.h>
 
-TEST_CASE("Transaction - Construction", "[transaction]")
+TEST_CASE("transaction - Construction", "[transaction]")
 {
-	auto fromPerson = std::make_shared<Divida::Person>(Divida::Tests::NAME_FRODO);
-	auto toPerson = std::make_shared<Divida::Person>(Divida::Tests::NAME_GANDALF);
+	auto fromPerson = std::make_shared<divida::person>(divida::Tests::NAME_FRODO);
+	auto toPerson = std::make_shared<divida::person>(divida::Tests::NAME_GANDALF);
 
-	auto fromPersonWeak = std::weak_ptr<Divida::Person>(fromPerson);
-	auto toPersonWeak = std::weak_ptr<Divida::Person>(toPerson);
+	auto fromPersonWeak = std::weak_ptr<divida::person>(fromPerson);
+	auto toPersonWeak = std::weak_ptr<divida::person>(toPerson);
 	auto amount = 12.35f;
 
-	Divida::Transaction transaction(fromPersonWeak, toPersonWeak, amount);
+	divida::transaction transaction(fromPersonWeak, toPersonWeak, amount);
 
-	CHECK(fromPerson == transaction.FromPerson().lock());
-	CHECK(toPerson == transaction.ToPerson().lock());
-	CHECK(amount == transaction.Amount());
+	CHECK(fromPerson == transaction.from_person().lock());
+	CHECK(toPerson == transaction.to_person().lock());
+	CHECK(amount == transaction.amount());
 }

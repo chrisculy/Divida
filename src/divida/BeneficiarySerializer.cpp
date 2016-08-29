@@ -1,25 +1,24 @@
-#include "pch.h"
 #include "BeneficiarySerializer.h"
 
-namespace Divida
+namespace divida
 {
-	const std::string BeneficiarySerializer::ELEMENT_NAME = "beneficiary";
-	const std::string BeneficiarySerializer::PERSON_ATTRIBUTE = "person";
-	const std::string BeneficiarySerializer::WEIGHT_ATTRIBUTE = "weight";
+	const std::string beneficiary_serializer::c_elementName = "beneficiary";
+	const std::string beneficiary_serializer::c_personAttribute = "person";
+	const std::string beneficiary_serializer::c_weightAttribute = "weight";
 
-	const std::string& BeneficiarySerializer::ElementName() const
+	const std::string& beneficiary_serializer::element_name() const
 	{
-		return ELEMENT_NAME;
+		return c_elementName;
 	}
 
-	Beneficiary BeneficiarySerializer::Read(const pugi::xml_node& node)
+	beneficiary beneficiary_serializer::read(const pugi::xml_node& node)
 	{
 		std::string nodeName(node.name());
-		if (nodeName == ElementName())
+		if (nodeName == element_name())
 		{
 			std::string personName;
 
-			auto personAttribute = node.attribute(PERSON_ATTRIBUTE.c_str());
+			auto personAttribute = node.attribute(c_personAttribute.c_str());
 			if (personAttribute != nullptr)
 				personName = personAttribute.value();
 		}
@@ -27,28 +26,28 @@ namespace Divida
 		throw 1;
 	}
 
-	void BeneficiarySerializer::Write(pugi::xml_document & document, const Beneficiary& element)
+	void beneficiary_serializer::write(pugi::xml_document & document, const beneficiary& element)
 	{
-		auto node = document.append_child(ElementName().c_str());
+		auto node = document.append_child(element_name().c_str());
 		if (node == nullptr)
 			return;
 
-		if (element.Person() != nullptr)
+		if (element.person() != nullptr)
 		{
-			auto personAttribute = node.append_attribute(PERSON_ATTRIBUTE.c_str());
+			auto personAttribute = node.append_attribute(c_personAttribute.c_str());
 			if (personAttribute == nullptr)
 				return;
 
-			personAttribute.set_value(element.Person()->Name().c_str());
+			personAttribute.set_value(element.person()->name().c_str());
 		}
 
-		if (element.Weight() != 1.0f)
+		if (element.weight() != 1.0f)
 		{
-			auto weightAttribute = node.append_attribute(WEIGHT_ATTRIBUTE.c_str());
+			auto weightAttribute = node.append_attribute(c_weightAttribute.c_str());
 			if (weightAttribute == nullptr)
 				return;
 
-			weightAttribute.set_value(element.Weight());
+			weightAttribute.set_value(element.weight());
 		}
 	}
 }

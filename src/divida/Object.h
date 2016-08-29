@@ -2,15 +2,15 @@
 
 #include <string>
 
-namespace Divida
+namespace divida
 {
-	class Object
+	class object
 	{
 	public:
-		Object(const std::string& name);
-		Object(Object&& object);
+		object(const std::string& name);
+		object(object&& object);
 
-		const std::string& Name() const;
+		const std::string& name() const;
 		std::string ToString() const;
 
 	private:

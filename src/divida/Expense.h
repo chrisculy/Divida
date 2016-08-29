@@ -1,42 +1,41 @@
 #pragma once
 
-#include <memory>
-#include <vector>
-
 #include "Beneficiary.h"
-#include "Core.h"
 #include "Date.h"
 #include "Item.h"
 #include "Object.h"
 #include "Person.h"
 
-namespace Divida
+#include <memory>
+#include <vector>
+
+namespace divida
 {
-	class Expense : public Object
+	class expense : public object
 	{
 	public:
-		Expense(const std::string& name, const Divida::Date& date, const std::shared_ptr<Person> payer);
+		expense(const std::string& name, const divida::date& date, const std::shared_ptr<person> payer);
 
-		const Divida::Date& Date() const;
-		const std::shared_ptr<Person> Payer() const;
-		float Total() const;
-		const std::vector<std::shared_ptr<Item>>& Items() const;
+		const divida::date& date() const;
+		const std::shared_ptr<person> payer() const;
+		float total() const;
+		const std::vector<std::shared_ptr<item>>& items() const;
 
-		void SetDate(const Divida::Date& date);
-		void SetPayer(const std::shared_ptr<Person> payer);
+		void set_date(const divida::date& date);
+		void set_payer(const std::shared_ptr<person> payer);
 
-		void AddItem(const std::string& name, float cost, const std::vector<std::shared_ptr<Beneficiary>>& beneficiaries);
-		void AddItems(const std::vector<std::pair<std::string, float>>& namesAndCosts, const std::vector<std::shared_ptr<Beneficiary>>& beneficiaries);
+		void add_item(const std::string& name, float cost, const std::vector<std::shared_ptr<beneficiary>>& beneficiaries);
+		void add_items(const std::vector<std::pair<std::string, float>>& namesAndCosts, const std::vector<std::shared_ptr<beneficiary>>& beneficiaries);
 
 		std::string ToString() const;
 
 	private:
-		Divida::Date m_date;
-		std::shared_ptr<Person> m_payer;
-		std::vector<std::shared_ptr<Item>> m_items;
+		divida::date m_date;
+		std::shared_ptr<person> m_payer;
+		std::vector<std::shared_ptr<item>> m_items;
 	};
 
-	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<Expense>& ptr);
-	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<Expense>& ptr);
-	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<Expense>& ptr);
+	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<expense>& ptr);
+	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<expense>& ptr);
+	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<expense>& ptr);
 }

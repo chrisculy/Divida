@@ -9,30 +9,30 @@ const std::string c_reportName = "The Journey to Rivendell";
 
 }
 
-TEST_CASE("Report - Construction", "[report]")
+TEST_CASE("report - Construction", "[report]")
 {
-	Divida::Report report(c_reportName);
+	divida::report report(c_reportName);
 
-	CHECK(c_reportName == report.Name());
+	CHECK(c_reportName == report.name());
 }
 
-TEST_CASE("Report - AddAndGetPerson", "[report]")
+TEST_CASE("report - AddAndGetPerson", "[report]")
 {
-	Divida::Report report(c_reportName);
+	divida::report report(c_reportName);
 				
 	// TODO: Unimplemented!
 }
 
-TEST_CASE("Report - NewAndGetExpense", "[report]")
+TEST_CASE("report - NewAndGetExpense", "[report]")
 {
-	Divida::Report report(c_reportName);
+	divida::report report(c_reportName);
 
 	// TODO: Unimplemented!
 }
 
-TEST_CASE("Report - CalculateTransactions", "[report]")
+TEST_CASE("report - calculate_transactions", "[report]")
 {
-	Divida::Report report(c_reportName);
+	divida::report report(c_reportName);
 
 	// TODO: Unimplemented!
 }
