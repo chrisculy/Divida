@@ -53,7 +53,24 @@ set(divida_sources
 	../src/divida/Transaction.cpp
 )
 
-add_library(divida ${divida_sources})
+set(divida_headers
+	../src/divida/Beneficiary.h
+	../src/divida/BeneficiarySerializer.h
+	../src/divida/Core.h
+	../src/divida/Date.h
+	../src/divida/Exception.h
+	../src/divida/Expense.h
+	../src/divida/Item.h
+	../src/divida/Object.h
+	../src/divida/ObjectSerializer.h
+	../src/divida/Person.h
+	../src/divida/PersonSerializer.h
+	../src/divida/Report.h
+	../src/divida/ReportXmlSerializer.h
+	../src/divida/Transaction.h
+)
+
+add_library(divida ${divida_sources} ${divida_headers})
 
 # divida-console executable
 set(divida_console_sources

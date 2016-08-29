@@ -17,6 +17,10 @@ set(divida_tests_sources
 	../../tests/TransactionTests.cpp
 )
 
+set(divida_tests_headers
+	../../tests/divida_tests.h
+)
+
 include_directories(../../external/catch/include)
-add_executable(divida-tests ${divida_tests_sources})
+add_executable(divida-tests ${divida_tests_sources} ${divida_tests_headers})
 target_link_libraries(divida-tests divida)
