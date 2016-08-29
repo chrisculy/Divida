@@ -1,14 +1,14 @@
 #define CATCH_CONFIG_MAIN
 #include <catch.hpp>
 
-#include <divida/Beneficiary.h>
-#include <divida/Date.h>
-#include <divida/Expense.h>
-#include <divida/Item.h>
-#include <divida/Object.h>
-#include <divida/Person.h>
-#include <divida/Report.h>
-#include <divida/Transaction.h>
+#include <divida/beneficiary.h>
+#include <divida/date.h>
+#include <divida/expense.h>
+#include <divida/item.h>
+#include <divida/object.h>
+#include <divida/person.h>
+#include <divida/report.h>
+#include <divida/transaction.h>
 
 namespace Catch
 {

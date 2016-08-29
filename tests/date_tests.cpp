@@ -1,6 +1,6 @@
 #include "divida_tests.h"
 
-#include <divida/Date.h>
+#include <divida/date.h>
 
 TEST_CASE("date - Creation", "[date]")
 {

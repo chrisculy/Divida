@@ -5,16 +5,16 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
 endif()
 
 set(divida_tests_sources
-	../../tests/BeneficiaryTests.cpp
-	../../tests/DateTests.cpp
-	../../tests/ExpenseTests.cpp
-	../../tests/IntegrationTests.cpp
-	../../tests/ItemTests.cpp
+	../../tests/beneficiary_tests.cpp
+	../../tests/date_tests.cpp
+	../../tests/expense_tests.cpp
+	../../tests/integration_tests.cpp
+	../../tests/item_tests.cpp
 	../../tests/main.cpp
-	../../tests/ObjectTests.cpp
-	../../tests/PersonTests.cpp
-	../../tests/ReportTests.cpp
-	../../tests/TransactionTests.cpp
+	../../tests/object_tests.cpp
+	../../tests/person_tests.cpp
+	../../tests/report_tests.cpp
+	../../tests/transaction_tests.cpp
 )
 
 set(divida_tests_headers

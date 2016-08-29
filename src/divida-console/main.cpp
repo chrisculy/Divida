@@ -1,4 +1,4 @@
-#include <divida/ReportXmlSerializer.h>
+#include <divida/report_xml_serializer.h>
 
 #include <fstream>
 #include <iostream>

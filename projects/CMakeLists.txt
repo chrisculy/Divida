@@ -37,37 +37,37 @@ include_directories(
 
 # divida library
 set(divida_sources
-	../src/divida/Beneficiary.cpp
-	../src/divida/BeneficiarySerializer.cpp
-	../src/divida/Date.cpp
-	../src/divida/Exception.cpp
-	../src/divida/Expense.cpp
-	../src/divida/Item.cpp
-	../src/divida/Object.cpp
-	../src/divida/ObjectSerializer.cpp
-	../src/divida/Person.cpp
-	../src/divida/PersonSerializer.cpp
-	../src/divida/Report.cpp
-	../src/divida/ReportXmlSerializer.cpp
+	../src/divida/beneficiary.cpp
+	../src/divida/beneficiary_serializer.cpp
+	../src/divida/date.cpp
+	../src/divida/exception.cpp
+	../src/divida/expense.cpp
+	../src/divida/item.cpp
+	../src/divida/object.cpp
+	../src/divida/object_serializer.cpp
+	../src/divida/person.cpp
+	../src/divida/person_serializer.cpp
+	../src/divida/report.cpp
+	../src/divida/report_xml_serializer.cpp
 	../src/divida/to_string.cpp
-	../src/divida/Transaction.cpp
+	../src/divida/transaction.cpp
 )
 
 set(divida_headers
-	../src/divida/Beneficiary.h
-	../src/divida/BeneficiarySerializer.h
-	../src/divida/Date.h
-	../src/divida/Exception.h
-	../src/divida/Expense.h
-	../src/divida/Item.h
-	../src/divida/Object.h
-	../src/divida/ObjectSerializer.h
-	../src/divida/Person.h
-	../src/divida/PersonSerializer.h
-	../src/divida/Report.h
-	../src/divida/ReportXmlSerializer.h
+	../src/divida/beneficiary.h
+	../src/divida/beneficiary_serializer.h
+	../src/divida/date.h
+	../src/divida/exception.h
+	../src/divida/expense.h
+	../src/divida/item.h
+	../src/divida/object.h
+	../src/divida/object_serializer.h
+	../src/divida/person.h
+	../src/divida/person_serializer.h
+	../src/divida/report.h
+	../src/divida/report_xml_serializer.h
 	../src/divida/to_string.h
-	../src/divida/Transaction.h
+	../src/divida/transaction.h
 )
 
 add_library(divida ${divida_sources} ${divida_headers})

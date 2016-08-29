@@ -1,6 +1,6 @@
 #include "divida_tests.h"
 
-#include <divida/Beneficiary.h>
+#include <divida/beneficiary.h>
 
 TEST_CASE("beneficiary - Construction", "[beneficiary]")
 {
@@ -10,5 +10,5 @@ TEST_CASE("beneficiary - Construction", "[beneficiary]")
 	divida::beneficiary beneficiary(person, weight);
 
 	CHECK(person == beneficiary.person());
-	CHECK(weight == Approx(beneficiary.weight()));// , FLOAT_EPSILON);
+	CHECK(weight == Approx(beneficiary.weight()));
 }

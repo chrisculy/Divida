@@ -1,6 +1,6 @@
 #include "divida_tests.h"
 
-#include <divida/Person.h>
+#include <divida/person.h>
 
 TEST_CASE("person - Construction", "[person]")
 {

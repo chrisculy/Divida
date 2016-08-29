@@ -1,6 +1,6 @@
 #include "divida_tests.h"
 
-#include <divida/Report.h>
+#include <divida/report.h>
 
 namespace
 {
