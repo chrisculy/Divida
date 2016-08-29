@@ -4,8 +4,8 @@
 
 TEST_CASE("transaction - Construction", "[transaction]")
 {
-	auto fromPerson = std::make_shared<divida::person>(divida::Tests::NAME_FRODO);
-	auto toPerson = std::make_shared<divida::person>(divida::Tests::NAME_GANDALF);
+	auto fromPerson = std::make_shared<divida::person>(divida::tests::c_nameFrodo);
+	auto toPerson = std::make_shared<divida::person>(divida::tests::c_nameGandalf);
 
 	auto fromPersonWeak = std::weak_ptr<divida::person>(fromPerson);
 	auto toPersonWeak = std::weak_ptr<divida::person>(toPerson);

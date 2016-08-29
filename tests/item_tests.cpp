@@ -17,7 +17,7 @@ TEST_CASE("item - ConstructionSingleBeneficiary", "[item]")
 {
 	auto name = std::string("Sting");
 	auto cost = 497.82f;
-	auto person = std::make_shared<divida::person>(divida::Tests::NAME_FRODO);
+	auto person = std::make_shared<divida::person>(divida::tests::c_nameFrodo);
 	auto beneficiary = std::make_shared<divida::beneficiary>(person);
 				
 	std::vector<std::shared_ptr<divida::beneficiary>> beneficiaries;
@@ -34,10 +34,10 @@ TEST_CASE("item - ConstructionMultipleBeneficiaries", "[item]")
 {
 	auto name = std::string("Daggers");
 	auto cost = 986631.74f;
-	auto frodo = std::make_shared<divida::person>(divida::Tests::NAME_FRODO);
-	auto sam = std::make_shared<divida::person>(divida::Tests::NAME_SAM);
-	auto merry = std::make_shared<divida::person>(divida::Tests::NAME_MERRY);
-	auto pippin = std::make_shared<divida::person>(divida::Tests::NAME_PIPPIN);
+	auto frodo = std::make_shared<divida::person>(divida::tests::c_nameFrodo);
+	auto sam = std::make_shared<divida::person>(divida::tests::c_nameSam);
+	auto merry = std::make_shared<divida::person>(divida::tests::c_nameMerry);
+	auto pippin = std::make_shared<divida::person>(divida::tests::c_namePippin);
 
 	auto beneficiaryFrodo = std::make_shared<divida::beneficiary>(frodo);
 	auto beneficiarySam = std::make_shared<divida::beneficiary>(sam);

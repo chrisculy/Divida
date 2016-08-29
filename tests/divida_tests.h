@@ -6,15 +6,12 @@
 
 namespace divida
 {
-	namespace Tests
+	namespace tests
 	{
-		const std::string NAME_GANDALF = "Gandalf";
-		const std::string NAME_FRODO = "Frodo";
-		const std::string NAME_SAM = "Sam";
-		const std::string NAME_MERRY = "Merry";
-		const std::string NAME_PIPPIN = "Pippin";
-		const std::string NAME_ARAGORN = "Aragorn";
-		const std::string NAME_LEGOLAS = "Legolas";
-		const std::string NAME_GIMLI = "Gimli";
+		const std::string c_nameGandalf = "Gandalf";
+		const std::string c_nameFrodo = "Frodo";
+		const std::string c_nameSam = "Sam";
+		const std::string c_nameMerry = "Merry";
+		const std::string c_namePippin = "Pippin";
 	}
 }

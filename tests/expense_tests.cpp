@@ -4,7 +4,7 @@
 
 TEST_CASE("expense - Construction", "[expense]")
 {
-	auto payer = std::make_shared<divida::person>(divida::Tests::NAME_GANDALF);
+	auto payer = std::make_shared<divida::person>(divida::tests::c_nameGandalf);
 	auto payerWeak = std::weak_ptr<divida::person>(payer);
 	auto name = std::string("Weapons");
 	auto date = divida::date::create(17, 3, 1946);
@@ -18,14 +18,14 @@ TEST_CASE("expense - Construction", "[expense]")
 
 TEST_CASE("expense - AddAndGetSingleItem", "[expense]")
 {
-	auto payer = std::make_shared<divida::person>(divida::Tests::NAME_GANDALF);
+	auto payer = std::make_shared<divida::person>(divida::tests::c_nameGandalf);
 	auto date = divida::date::create(17, 3, 1946);
 
 	divida::expense expense("Weapons", date, payer);
 
 	auto itemName = std::string("Sting");
 	auto itemCost = 15.37f;
-	auto person = std::make_shared<divida::person>(divida::Tests::NAME_FRODO);
+	auto person = std::make_shared<divida::person>(divida::tests::c_nameFrodo);
 	auto beneficiary = std::make_shared<divida::beneficiary>(person);
 	auto beneficiaries = std::vector<std::shared_ptr<divida::beneficiary>> { beneficiary };
 

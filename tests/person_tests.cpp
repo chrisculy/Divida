@@ -4,7 +4,7 @@
 
 TEST_CASE("person - Construction", "[person]")
 {
-	divida::person person(divida::Tests::NAME_FRODO);
+	divida::person person(divida::tests::c_nameFrodo);
 				
-	CHECK(divida::Tests::NAME_FRODO == person.name());
+	CHECK(divida::tests::c_nameFrodo == person.name());
 }
