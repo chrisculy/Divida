@@ -1,7 +1,5 @@
 #include "date.h"
 
-#include <sstream>
-
 namespace divida
 {
 	date date::create(int day, int month, int year)
@@ -37,12 +35,5 @@ namespace divida
 	bool date::operator==(const date& date) const
 	{
 		return m_day == date.m_day && m_month == date.m_month && m_year == date.m_year;
-	}
-
-	std::string date::ToString() const
-	{
-		std::stringstream s;
-		s << m_month << '/' << m_day << '/' << m_year;
-		return s.str();
 	}
 }

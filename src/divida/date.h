@@ -16,8 +16,6 @@ namespace divida
 		date operator=(const date& date);
 		bool operator==(const date& date) const;
 
-		std::string ToString() const;
-
 	private:
 		date(int day, int month, int year);
 

@@ -1,7 +1,4 @@
 #include "expense.h"
-#include "to_string.h"
-
-#include <sstream>
 
 namespace divida
 {
@@ -54,30 +51,5 @@ namespace divida
 	{
 		for (auto nameAndCost : namesAndCosts)
 			m_items.push_back(std::make_shared<item>(nameAndCost.first, nameAndCost.second, beneficiaries));
-	}
-
-	std::string expense::ToString() const
-	{
-		std::stringstream s;
-		s << c_toStringObjectBeginToken << name() << c_toStringDelimiter << m_date.ToString() << c_toStringDelimiter << total() << c_toStringDelimiter << m_payer << c_toStringDelimiter << m_items << c_toStringObjectEndToken;
-		return s.str();
-	}
-
-	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<expense>& ptr)
-	{
-		return o << ptr->ToString();
-	}
-
-	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<expense>& ptr)
-	{
-		return o << ptr->ToString();
-	}
-
-	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<expense>& ptr)
-	{
-		if (std::shared_ptr<expense> sharedPtr = ptr.lock())
-			o << sharedPtr->ToString();
-
-		return o;
 	}
 }

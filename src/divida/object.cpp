@@ -15,9 +15,4 @@ namespace divida
 	{
 		return m_name;
 	}
-
-	std::string object::ToString() const
-	{
-		return name();
-	}
 }

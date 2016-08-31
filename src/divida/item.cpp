@@ -1,7 +1,4 @@
 #include "item.h"
-#include "to_string.h"
-
-#include <sstream>
 
 namespace divida
 {
@@ -35,30 +32,5 @@ namespace divida
 		auto iter = std::find(m_beneficiaries.begin(), m_beneficiaries.end(), beneficiary);
 		if (iter != m_beneficiaries.end())
 			m_beneficiaries.erase(iter);
-	}
-
-	std::string item::ToString() const
-	{
-		std::stringstream s;
-		s << c_toStringObjectBeginToken << name() << c_toStringDelimiter << m_cost << c_toStringDelimiter << m_beneficiaries << c_toStringObjectEndToken;
-		return s.str();
-	}
-
-	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<item>& ptr)
-	{
-		return o << ptr->ToString();
-	}
-
-	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<item>& ptr)
-	{
-		return o << ptr->ToString();
-	}
-
-	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<item>& ptr)
-	{
-		if (std::shared_ptr<item> sharedPtr = ptr.lock())
-			o << sharedPtr->ToString();
-
-		return o;
 	}
 }

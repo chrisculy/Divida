@@ -14,6 +14,7 @@ set(divida_tests_sources
 	../../tests/object_tests.cpp
 	../../tests/person_tests.cpp
 	../../tests/report_tests.cpp
+	../../tests/to_string_tests.cpp
 	../../tests/transaction_tests.cpp
 )
 

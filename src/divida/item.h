@@ -19,14 +19,8 @@ namespace divida
 		void add_beneficiary(const std::shared_ptr<beneficiary> beneficiary);
 		void remove_beneficiary(const std::shared_ptr<beneficiary> beneficiary);
 
-		std::string ToString() const;
-
 	private:
 		float m_cost;
 		std::vector<std::shared_ptr<beneficiary>> m_beneficiaries;
 	};
-
-	std::ostream& operator<<(std::ostream& o, const std::unique_ptr<item>& ptr);
-	std::ostream& operator<<(std::ostream& o, const std::shared_ptr<item>& ptr);
-	std::ostream& operator<<(std::ostream& o, const std::weak_ptr<item>& ptr);
 }
