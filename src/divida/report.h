@@ -38,7 +38,7 @@ namespace divida
 	class report : public object
 	{
 	public:
-		report(const std::string& name);
+		explicit report(const std::string& name);
 
 		void add_person(const std::string& name);
 		const std::shared_ptr<person> get_person(const std::string& name) const;

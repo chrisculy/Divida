@@ -7,7 +7,7 @@ namespace divida
 	class object
 	{
 	public:
-		object(const std::string& name);
+		explicit object(const std::string& name);
 		object(object&& object);
 
 		const std::string& name() const;

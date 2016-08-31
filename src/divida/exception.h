@@ -7,7 +7,7 @@ namespace divida
 	class exception
 	{
 	public:
-		exception(std::string message);
+		explicit exception(std::string message);
 		~exception() = default;
 
 		std::string message();

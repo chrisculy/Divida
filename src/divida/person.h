@@ -10,7 +10,7 @@ namespace divida
 	class person : public object
 	{
 	public:
-		person(const std::string& name);
+		explicit person(const std::string& name);
 
 		std::string ToString() const;
 	};

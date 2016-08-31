@@ -11,7 +11,7 @@ namespace divida
 	class beneficiary
 	{
 	public:
-		beneficiary(const std::shared_ptr<divida::person> person, float weight = 1.0f);
+		explicit beneficiary(const std::shared_ptr<divida::person> person, float weight = 1.0f);
 
 		const std::shared_ptr<divida::person> person() const;
 		float weight() const;
