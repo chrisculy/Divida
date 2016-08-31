@@ -8,7 +8,6 @@ namespace divida
 	{
 	public:
 		explicit object(const std::string& name);
-		object(object&& object);
 
 		const std::string& name() const;
 

@@ -6,11 +6,6 @@ namespace divida
 	{
 	}
 
-	object::object(object&& object)
-	{
-		m_name = std::move(object.m_name);
-	}
-
 	const std::string& object::name() const
 	{
 		return m_name;
