@@ -2,14 +2,12 @@
 
 namespace divida
 {
+	exception::exception(std::string message) : m_message(message)
+	{
+	}
 
-exception::exception(std::string message) : m_message(message)
-{
-}
-
-std::string exception::message()
-{
-	return m_message;
-}
-
+	std::string exception::message()
+	{
+		return m_message;
+	}
 }

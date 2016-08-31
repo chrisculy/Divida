@@ -16,7 +16,6 @@ namespace
 
 namespace divida
 {
-
 	const std::string report_xml_serializer::c_reportElement = "report";
 	const std::string report_xml_serializer::c_personsElement = "persons";
 	const std::string report_xml_serializer::c_personElement = "person";
@@ -277,5 +276,4 @@ namespace divida
 		attributeValue = attribute.as_float();
 		return true;
 	}
-
 }
