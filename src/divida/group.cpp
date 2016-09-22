@@ -5,7 +5,7 @@
 namespace divida
 {
 	group::group(const std::string& name)
-		: m_name(name)
+		: m_name{ name }
 	{
 	}
 

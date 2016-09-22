@@ -10,7 +10,7 @@
 namespace divida
 {
 	report::report(const std::string& name)
-		: m_name(name)
+		: m_name{ name }
 	{
 	}
 

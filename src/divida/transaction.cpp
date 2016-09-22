@@ -3,7 +3,9 @@
 namespace divida
 {
 	transaction::transaction(const std::weak_ptr<person> fromPerson, const std::weak_ptr<person> toPerson, float amount)
-		: m_fromPerson(fromPerson), m_toPerson(toPerson), m_amount(amount)
+		: m_fromPerson{ fromPerson }
+		, m_toPerson{ toPerson }
+		, m_amount{ amount }
 	{
 	}
 

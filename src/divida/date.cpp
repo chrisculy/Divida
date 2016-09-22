@@ -8,7 +8,10 @@ namespace divida
 		return date(day, month, year);
 	}
 
-	date::date(int day, int month, int year) : m_day(day), m_month(month), m_year(year)
+	date::date(int day, int month, int year)
+		: m_day{ day }
+		, m_month{ month }
+		, m_year{ year }
 	{
 	}
 
