@@ -118,6 +118,25 @@ namespace divida
 		return width + padding;
 	}
 
+	bool report::operator==(const report& other) const
+	{
+		if (m_name != other.m_name || m_expenses.size() != other.m_expenses.size())
+			return false;
+
+		for (size_t i = 0; i < m_expenses.size(); i++)
+		{
+			if (*m_expenses[i] != *other.m_expenses[i])
+				return false;
+		}
+
+		return true;
+	}
+
+	bool report::operator!=(const report& other) const
+	{
+		return !(*this == other);
+	}
+
 	void report::add_payment_for_person(const std::shared_ptr<person>& person, const std::string& name, float amount)
 	{
 		m_info[person].payments.push_back(report_payment(name, amount));

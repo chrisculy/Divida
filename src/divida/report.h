@@ -49,6 +49,9 @@ namespace divida
 		const report_info* get_report_info_for_person(const std::string& name) const;
 		unsigned int get_item_name_print_width() const;
 
+		bool operator==(const report& other) const;
+		bool operator!=(const report& other) const;
+
 	private:
 		friend class group;
 

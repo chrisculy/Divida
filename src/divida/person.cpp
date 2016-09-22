@@ -17,4 +17,14 @@ namespace divida
 	{
 		return m_name;
 	}
+
+	bool person::operator==(const person& other) const
+	{
+		return m_id == other.m_id && m_name == other.m_name;
+	}
+
+	bool person::operator!=(const person& other) const
+	{
+		return !(*this == other);
+	}
 }

@@ -10,6 +10,9 @@ namespace divida
 		size_t id() const;
 		const std::string& name() const;
 
+		bool operator==(const person& other) const;
+		bool operator!=(const person& other) const;
+
 	private:
 		friend class group;
 

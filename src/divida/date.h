@@ -13,8 +13,9 @@ namespace divida
 		int month() const;
 		int year() const;
 
-		date operator=(const date& date);
-		bool operator==(const date& date) const;
+		date operator=(const date& other);
+		bool operator==(const date& other) const;
+		bool operator!=(const date& other) const;
 
 	private:
 		date(int day, int month, int year);

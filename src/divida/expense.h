@@ -27,6 +27,9 @@ namespace divida
 		void add_item(item&& item);
 		void add_items(const std::vector<std::pair<std::string, float>>& namesAndCosts, const std::vector<beneficiary>& beneficiaries);
 
+		bool operator==(const expense& other) const;
+		bool operator!=(const expense& other) const;
+
 	private:
 		std::string m_name;
 		divida::date m_date;

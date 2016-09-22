@@ -43,4 +43,23 @@ namespace divida
 		if (iter != m_beneficiaries.end())
 			m_beneficiaries.erase(iter);
 	}
+
+	bool item::operator==(const item& other) const
+	{
+		if (m_name != other.m_name || m_cost != other.m_cost || m_beneficiaries.size() != other.m_beneficiaries.size())
+			return false;
+
+		for (size_t i = 0; i < m_beneficiaries.size(); i++)
+		{
+			if (m_beneficiaries[i] != other.m_beneficiaries[i])
+				return false;
+		}
+
+		return true;
+	}
+
+	bool item::operator!=(const item& other) const
+	{
+		return !(*this == other);
+	}
 }

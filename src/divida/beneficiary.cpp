@@ -20,7 +20,7 @@ namespace divida
 
 	bool beneficiary::operator==(const beneficiary& other) const
 	{
-		return m_person == other.m_person && m_weight == other.m_weight;
+		return *m_person == *other.m_person && m_weight == other.m_weight;
 	}
 
 	bool beneficiary::operator!=(const beneficiary& other) const

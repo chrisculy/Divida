@@ -19,6 +19,9 @@ namespace divida
 		void add_beneficiary(const beneficiary& beneficiary);
 		void remove_beneficiary(const beneficiary& beneficiary);
 
+		bool operator==(const item& other) const;
+		bool operator!=(const item& other) const;
+
 	private:
 		std::string m_name;
 		float m_cost;

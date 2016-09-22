@@ -27,13 +27,18 @@ namespace divida
 		return m_year;
 	}
 
-	date date::operator=(const date& date)
+	date date::operator=(const date& other)
 	{
-		return date::create(date.day(), date.month(), date.year());
+		return date::create(other.day(), other.month(), other.year());
 	}
 	
-	bool date::operator==(const date& date) const
+	bool date::operator==(const date& other) const
 	{
-		return m_day == date.m_day && m_month == date.m_month && m_year == date.m_year;
+		return m_day == other.m_day && m_month == other.m_month && m_year == other.m_year;
+	}
+
+	bool date::operator!=(const date& other) const
+	{
+		return !(*this == other);
 	}
 }

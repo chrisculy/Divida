@@ -60,4 +60,23 @@ namespace divida
 		for (auto nameAndCost : namesAndCosts)
 			m_items.emplace_back(nameAndCost.first, nameAndCost.second, beneficiaries);
 	}
+
+	bool expense::operator==(const expense& other) const
+	{
+		if (m_name != other.m_name || m_date != other.m_date || *m_payer != *other.m_payer || m_items.size() != other.m_items.size())
+			return false;
+
+		for (size_t i = 0; i < m_items.size(); i++)
+		{
+			if (m_items[i] != other.m_items[i])
+				return false;
+		}
+
+		return true;
+	}
+
+	bool expense::operator!=(const expense& other) const
+	{
+		return !(*this == other);
+	}
 }
