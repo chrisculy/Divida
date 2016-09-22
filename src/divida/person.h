@@ -1,14 +1,21 @@
 #pragma once
 
-#include "object.h"
-
 #include <string>
 
 namespace divida
 {
-	class person : public object
+	class person
 	{
 	public:
-		explicit person(const std::string& name);
+		size_t id() const;
+		const std::string& name() const;
+
+	private:
+		friend class group;
+
+		person(size_t id, const std::string& name);
+		
+		size_t m_id;
+		std::string m_name;
 	};
 }

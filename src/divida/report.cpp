@@ -9,71 +9,49 @@
 
 namespace divida
 {
-	report::report(const std::string& name) : object(name)
+	report::report(const std::string& name)
+		: m_name(name)
 	{
 	}
 
-	void report::add_person(const std::string& name)
+	const std::string& report::name() const
 	{
-		m_persons.push_back(std::make_shared<person>(name));
+		return m_name;
 	}
 
-	const std::shared_ptr<person> report::get_person(const std::string& name) const
+	void report::set_name(const std::string& name)
 	{
-		for (auto person : m_persons)
-		{
-			if (person->name() == name)
-				return person;
-		}
-
-		return nullptr;
+		m_name = name;
 	}
 
-	const std::shared_ptr<expense> report::new_expense(const std::string& name, const date& date, const std::shared_ptr<person> payer)
+	const expense& report::add_expense(std::unique_ptr<expense> expense)
 	{
 		// TODO: make sure the name is unique (this also has to work even if the name is changed later on from the Expense API).
 		// TODO: only insert the expense if it doesn't already exist (related to above).
-		auto expense = std::make_shared<divida::expense>(name, date, payer);
-		m_expenses.push_back(expense);
-		return expense;
+		m_expenses.emplace_back(std::move(expense));
+		return *(m_expenses.back());
 	}
 
-	const std::shared_ptr<expense> report::get_expense(const std::string& name) const
-	{
-		for (auto expense : m_expenses)
-		{
-			if (expense->name() == name)
-				return expense;
-		}
-
-		return nullptr;
-	}
-
-	const std::vector<std::shared_ptr<person>>& report::persons() const
-	{
-		return m_persons;
-	}
-
-	const std::vector<std::shared_ptr<expense>>& report::expenses() const
+	const std::vector<std::unique_ptr<expense>>& report::expenses() const
 	{
 		return m_expenses;
 	}
 
-	std::vector<std::shared_ptr<transaction>> report::calculate_transactions()
+	std::vector<std::shared_ptr<transaction>> report::run()
 	{
 		// Calculate total owing amounts for each person, subtracting the expenses they paid for
 		m_owingTotals.clear();
-		for (auto expense : m_expenses)
+		for (auto& expense : m_expenses)
 		{
 			add_payment_for_person(expense->payer(), expense->name(), expense->total());
 
 			for (auto item : expense->items())
 			{
-				float totalWeightFactor = 1.0f / std::accumulate<std::vector<std::shared_ptr<beneficiary>>::const_iterator, float>(item->beneficiaries().begin(), item->beneficiaries().end(), 0, 
-					[](float total, std::shared_ptr<beneficiary> current) { return total + current->weight(); });
+				float totalWeightFactor = 1.0f / std::accumulate<std::vector<beneficiary>::const_iterator, float>(item.beneficiaries().begin(), item.beneficiaries().end(), 0, 
+					[](float total, const beneficiary& current) { return total + current.weight(); });
 
-				for (auto beneficiary : item->beneficiaries())
-					add_expense_for_person(beneficiary->person(), item->name(), beneficiary->weight() * totalWeightFactor, item->cost());
+				for (auto beneficiary : item.beneficiaries())
+					add_expense_for_person(beneficiary.person(), item.name(), beneficiary.weight() * totalWeightFactor, item.cost());
 			}
 		}
 
@@ -128,12 +106,12 @@ namespace divida
 	{
 		const unsigned int padding = 4;
 		unsigned int width = 20;
-		for (auto expense : m_expenses)
+		for (auto& expense : m_expenses)
 		{
 			for (auto item : expense->items())
 			{
-				if (item->name().length() > width)
-					width = item->name().length();
+				if (item.name().length() > width)
+					width = item.name().length();
 			}
 		}
 		

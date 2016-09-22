@@ -1,26 +1,27 @@
 #pragma once
 
 #include "beneficiary.h"
-#include "object.h"
 
 #include <vector>
 
 namespace divida
 {
-	class item : public object
+	class item
 	{
 	public:
 		item(const std::string& name, float cost);
-		item(const std::string& name, float cost, const std::vector<std::shared_ptr<beneficiary>>& beneficiaries);
+		item(const std::string& name, float cost, const std::vector<beneficiary>& beneficiaries);
 
-		const std::vector<std::shared_ptr<beneficiary>>& beneficiaries() const;
+		const std::vector<beneficiary>& beneficiaries() const;
+		const std::string& name() const;
 		float cost() const;
 
-		void add_beneficiary(const std::shared_ptr<beneficiary> beneficiary);
-		void remove_beneficiary(const std::shared_ptr<beneficiary> beneficiary);
+		void add_beneficiary(const beneficiary& beneficiary);
+		void remove_beneficiary(const beneficiary& beneficiary);
 
 	private:
+		std::string m_name;
 		float m_cost;
-		std::vector<std::shared_ptr<beneficiary>> m_beneficiaries;
+		std::vector<beneficiary> m_beneficiaries;
 	};
 }

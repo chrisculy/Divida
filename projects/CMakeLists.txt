@@ -41,8 +41,8 @@ set(divida_sources
 	../src/divida/date.cpp
 	../src/divida/exception.cpp
 	../src/divida/expense.cpp
+	../src/divida/group.cpp
 	../src/divida/item.cpp
-	../src/divida/object.cpp
 	../src/divida/person.cpp
 	../src/divida/report.cpp
 	../src/divida/to_string.cpp
@@ -55,7 +55,6 @@ set(divida_headers
 	../src/divida/exception.h
 	../src/divida/expense.h
 	../src/divida/item.h
-	../src/divida/object.h
 	../src/divida/person.h
 	../src/divida/report.h
 	../src/divida/to_string.h

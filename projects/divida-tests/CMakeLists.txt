@@ -11,7 +11,6 @@ set(divida_tests_sources
 	../../tests/integration_tests.cpp
 	../../tests/item_tests.cpp
 	../../tests/main.cpp
-	../../tests/object_tests.cpp
 	../../tests/person_tests.cpp
 	../../tests/report_tests.cpp
 	../../tests/to_string_tests.cpp

@@ -1,5 +1,6 @@
 #include "divida_tests.h"
 
+#include <divida/group.h>
 #include <divida/item.h>
 
 TEST_CASE("item - Construction", "[item]")
@@ -15,36 +16,38 @@ TEST_CASE("item - Construction", "[item]")
 
 TEST_CASE("item - ConstructionSingleBeneficiary", "[item]")
 {
+	auto group = divida::group(divida::tests::c_nameTestGroup);
 	auto name = std::string("Sting");
 	auto cost = 497.82f;
-	auto person = std::make_shared<divida::person>(divida::tests::c_nameFrodo);
-	auto beneficiary = std::make_shared<divida::beneficiary>(person);
+	auto person = group.person(divida::tests::c_nameFrodo);
+	auto beneficiary = divida::beneficiary(person);
 				
-	std::vector<std::shared_ptr<divida::beneficiary>> beneficiaries;
+	std::vector<divida::beneficiary> beneficiaries;
 	beneficiaries.push_back(beneficiary);
 
 	divida::item item(name, cost, beneficiaries);
 
 	CHECK(name == item.name());
-	CHECK(cost == item.cost());				
+	CHECK(cost == item.cost());
 	CHECK(beneficiaries == item.beneficiaries());
 }
 
 TEST_CASE("item - ConstructionMultipleBeneficiaries", "[item]")
 {
+	auto group = divida::group(divida::tests::c_nameTestGroup);
 	auto name = std::string("Daggers");
 	auto cost = 986631.74f;
-	auto frodo = std::make_shared<divida::person>(divida::tests::c_nameFrodo);
-	auto sam = std::make_shared<divida::person>(divida::tests::c_nameSam);
-	auto merry = std::make_shared<divida::person>(divida::tests::c_nameMerry);
-	auto pippin = std::make_shared<divida::person>(divida::tests::c_namePippin);
+	auto frodo = group.person(divida::tests::c_nameFrodo);
+	auto sam = group.person(divida::tests::c_nameSam);
+	auto merry = group.person(divida::tests::c_nameMerry);
+	auto pippin = group.person(divida::tests::c_namePippin);
 
-	auto beneficiaryFrodo = std::make_shared<divida::beneficiary>(frodo);
-	auto beneficiarySam = std::make_shared<divida::beneficiary>(sam);
-	auto beneficiaryMerry = std::make_shared<divida::beneficiary>(merry);
-	auto beneficiaryPippin = std::make_shared<divida::beneficiary>(pippin);
+	auto beneficiaryFrodo = divida::beneficiary(frodo);
+	auto beneficiarySam = divida::beneficiary(sam);
+	auto beneficiaryMerry = divida::beneficiary(merry);
+	auto beneficiaryPippin = divida::beneficiary(pippin);
 
-	std::vector<std::shared_ptr<divida::beneficiary>> beneficiaries;
+	std::vector<divida::beneficiary> beneficiaries;
 	beneficiaries.push_back(beneficiaryFrodo);
 	beneficiaries.push_back(beneficiarySam);
 	beneficiaries.push_back(beneficiaryMerry);

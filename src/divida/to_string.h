@@ -4,7 +4,6 @@
 #include "date.h"
 #include "expense.h"
 #include "item.h"
-#include "object.h"
 #include "person.h"
 #include "transaction.h"
 
@@ -24,7 +23,8 @@ namespace divida
 }
 
 // output stream operators for generic common types
-template<typename T> std::ostream& operator<<(std::ostream& o, const std::vector<T>& vector)
+template<typename T>
+std::ostream& operator<<(std::ostream& o, const std::vector<T>& vector)
 {
 	o << divida::c_toStringObjectBegin;
 	for (unsigned int i = 0; i < vector.size(); i++)
@@ -70,14 +70,13 @@ std::ostream& operator<<(std::ostream& o, const divida::beneficiary& beneficiary
 std::ostream& operator<<(std::ostream& o, const divida::date& date);
 std::ostream& operator<<(std::ostream& o, const divida::expense& expense);
 std::ostream& operator<<(std::ostream& o, const divida::item& item);
-std::ostream& operator<<(std::ostream& o, const divida::object& object);
 std::ostream& operator<<(std::ostream& o, const divida::person& person);
 std::ostream& operator<<(std::ostream& o, const divida::transaction& transaction);
 
 namespace divida
 {
 	template<typename T>
-	std::string to_string(const std::unique_ptr<T> & ptr)
+	std::string to_string(const std::unique_ptr<T>& ptr)
 	{
 		std::ostringstream s;
 		s << ptr;
@@ -85,7 +84,7 @@ namespace divida
 	}
 
 	template<typename T>
-	std::string to_string(const std::shared_ptr<T> & ptr)
+	std::string to_string(const std::shared_ptr<T>& ptr)
 	{
 		std::ostringstream s;
 		s << ptr;
@@ -93,7 +92,7 @@ namespace divida
 	}
 
 	template<typename T>
-	std::string to_string(const std::weak_ptr<T> & ptr)
+	std::string to_string(const std::weak_ptr<T>& ptr)
 	{
 		std::ostringstream s;
 		s << ptr;
@@ -104,7 +103,6 @@ namespace divida
 	std::string to_string(const divida::date& date);
 	std::string to_string(const divida::expense& expense);
 	std::string to_string(const divida::item& item);
-	std::string to_string(const divida::object& object);
 	std::string to_string(const divida::person& person);
 	std::string to_string(const divida::transaction& transaction);
 }

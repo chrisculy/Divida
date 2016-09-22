@@ -3,8 +3,8 @@
 #include <divida/beneficiary.h>
 #include <divida/date.h>
 #include <divida/expense.h>
+#include <divida/group.h>
 #include <divida/item.h>
-#include <divida/object.h>
 #include <divida/person.h>
 #include <divida/report.h>
 #include <divida/to_string.h>
@@ -12,9 +12,11 @@
 
 TEST_CASE("to_string - divida types", "[to_string]")
 {
+	auto group = divida::group(divida::tests::c_nameTestGroup);
+
 	SECTION("beneficiary")
 	{
-		auto beneficiary = divida::beneficiary(std::make_shared<divida::person>(divida::tests::c_nameFrodo), 1.0f);
+		auto beneficiary = divida::beneficiary(group.person(divida::tests::c_nameFrodo), 1.0f);
 		CHECK("[[Frodo], 1.00]" == divida::to_string(beneficiary));
 	}
 	SECTION("date")
@@ -24,7 +26,7 @@ TEST_CASE("to_string - divida types", "[to_string]")
 	}
 	SECTION("expense")
 	{
-		auto payer = std::make_shared<divida::person>(divida::tests::c_nameGandalf);
+		auto payer = group.person(divida::tests::c_nameGandalf);
 		auto payerWeak = std::weak_ptr<divida::person>(payer);
 		auto name = std::string("Weapons");
 		auto date = divida::date::create(17, 3, 1946);
@@ -32,10 +34,10 @@ TEST_CASE("to_string - divida types", "[to_string]")
 		auto expense = divida::expense(name, date, payer);
 		auto itemName = std::string("Sting");
 		auto itemCost = 15.37f;
-		auto person = std::make_shared<divida::person>(divida::tests::c_nameFrodo);
-		auto beneficiary = std::make_shared<divida::beneficiary>(person);
-		auto beneficiaries = std::vector<std::shared_ptr<divida::beneficiary>>{ beneficiary };
-		expense.add_item(itemName, itemCost, beneficiaries);
+		auto person = group.person(divida::tests::c_nameFrodo);
+		auto beneficiary = divida::beneficiary(person);
+		auto beneficiaries = std::vector<divida::beneficiary>{ beneficiary };
+		expense.add_item(divida::item(itemName, itemCost, beneficiaries));
 		CHECK("[Weapons, 3/17/1946, 15.37, [Gandalf], [[Sting, 15.37, [[[Frodo], 1.00]]]]]" == divida::to_string(expense));
 	}
 	SECTION("item")
@@ -43,21 +45,16 @@ TEST_CASE("to_string - divida types", "[to_string]")
 		auto item = divida::item("Peanuts", 1.27f);
 		CHECK("[Peanuts, 1.27, []]" == divida::to_string(item));
 	}
-	SECTION("object")
-	{
-		auto object = divida::object(divida::tests::c_nameGandalf);
-		CHECK("[Gandalf]" == divida::to_string(object));
-	}
 	SECTION("person")
 	{
-		auto person = divida::person(divida::tests::c_nameFrodo);
+		auto person = group.person(divida::tests::c_nameFrodo);
 		auto s = divida::to_string(person);
 		CHECK("[Frodo]" == divida::to_string(person));
 	}
 	SECTION("transaction")
 	{
-		auto fromPerson = std::make_shared<divida::person>(divida::tests::c_nameFrodo);
-		auto toPerson = std::make_shared<divida::person>(divida::tests::c_nameGandalf);
+		auto fromPerson = group.person(divida::tests::c_nameFrodo);
+		auto toPerson = group.person(divida::tests::c_nameGandalf);
 
 		auto fromPersonWeak = std::weak_ptr<divida::person>(fromPerson);
 		auto toPersonWeak = std::weak_ptr<divida::person>(toPerson);
@@ -70,11 +67,13 @@ TEST_CASE("to_string - divida types", "[to_string]")
 
 TEST_CASE("to_string - STL pointer types", "[to_string]")
 {
+	auto group = divida::group(divida::tests::c_nameTestGroup);
+
 	SECTION("unique_ptr")
 	{
 		SECTION("non-null pointer")
 		{
-			auto person = std::make_unique<divida::person>(divida::tests::c_nameGandalf);
+			auto person = group.person(divida::tests::c_nameGandalf);
 			CHECK("[Gandalf]" == divida::to_string(person));
 		}
 		SECTION("null pointer")
@@ -87,7 +86,7 @@ TEST_CASE("to_string - STL pointer types", "[to_string]")
 	{
 		SECTION("non-null pointer")
 		{
-			auto person = std::make_shared<divida::person>(divida::tests::c_nameMerry);
+			auto person = group.person(divida::tests::c_nameMerry);
 			CHECK("[Merry]" == divida::to_string(person));
 		}
 		SECTION("null pointer")
@@ -100,18 +99,18 @@ TEST_CASE("to_string - STL pointer types", "[to_string]")
 	{
 		SECTION("non-null pointer")
 		{
-			auto person = std::make_shared<divida::person>(divida::tests::c_nameFrodo);
+			auto person = group.person(divida::tests::c_nameFrodo);
 			CHECK("[Frodo]" == divida::to_string(person));
 		}
 		SECTION("invalid pointer")
 		{
-			std::weak_ptr<divida::person> person;
+			std::weak_ptr<divida::date> date;
 			{
-				auto pippin = std::make_shared<divida::person>(divida::tests::c_namePippin);
-				person = pippin;
-				CHECK("[Pippin]" == divida::to_string(person));
+				auto specialDate = std::make_shared<divida::date>(divida::date::create(4, 2, 2016));
+				date = specialDate;
+				CHECK("2/4/2016" == divida::to_string(date));
 			}
-			CHECK(divida::c_toStringInvalidWeakPointer == divida::to_string(person));
+			CHECK(divida::c_toStringInvalidWeakPointer == divida::to_string(date));
 		}
 	}
 }

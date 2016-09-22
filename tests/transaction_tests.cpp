@@ -1,11 +1,13 @@
 #include "divida_tests.h"
 
+#include <divida/group.h>
 #include <divida/transaction.h>
 
 TEST_CASE("transaction - Construction", "[transaction]")
 {
-	auto fromPerson = std::make_shared<divida::person>(divida::tests::c_nameFrodo);
-	auto toPerson = std::make_shared<divida::person>(divida::tests::c_nameGandalf);
+	auto group = divida::group(divida::tests::c_nameTestGroup);
+	auto fromPerson = group.person(divida::tests::c_nameFrodo);
+	auto toPerson = group.person(divida::tests::c_nameGandalf);
 
 	auto fromPersonWeak = std::weak_ptr<divida::person>(fromPerson);
 	auto toPersonWeak = std::weak_ptr<divida::person>(toPerson);

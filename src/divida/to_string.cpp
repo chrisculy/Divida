@@ -29,11 +29,6 @@ std::ostream& operator<<(std::ostream& o, const divida::item& item)
 	return o << divida::c_toStringObjectBegin << item.name() << divida::c_toStringDelimiter << item.cost() << divida::c_toStringDelimiter << item.beneficiaries() << divida::c_toStringObjectEnd;
 }
 
-std::ostream& operator<<(std::ostream& o, const divida::object& object)
-{
-	return o << divida::c_toStringObjectBegin << object.name() << divida::c_toStringObjectEnd;
-}
-
 std::ostream& operator<<(std::ostream& o, const divida::person& person)
 {
 	return o << divida::c_toStringObjectBegin << person.name() << divida::c_toStringObjectEnd;
@@ -71,13 +66,6 @@ namespace divida
 	{
 		std::ostringstream stream;
 		stream << item;
-		return stream.str();
-	}
-
-	std::string to_string(const divida::object& object)
-	{
-		std::ostringstream stream;
-		stream << object;
 		return stream.str();
 	}
 
