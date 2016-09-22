@@ -1,12 +1,10 @@
-#include <divida/report_xml_serializer.h>
-
 #include <fstream>
 #include <iostream>
 #include <iomanip>
 
+#if 0
 using namespace divida;
 
-#if 0
 void CostcoTest();
 
 namespace

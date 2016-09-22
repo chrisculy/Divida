@@ -38,34 +38,26 @@ include_directories(
 # divida library
 set(divida_sources
 	../src/divida/beneficiary.cpp
-	../src/divida/beneficiary_serializer.cpp
 	../src/divida/date.cpp
 	../src/divida/exception.cpp
 	../src/divida/expense.cpp
 	../src/divida/item.cpp
 	../src/divida/object.cpp
-	../src/divida/object_serializer.cpp
 	../src/divida/person.cpp
-	../src/divida/person_serializer.cpp
 	../src/divida/report.cpp
-	../src/divida/report_xml_serializer.cpp
 	../src/divida/to_string.cpp
 	../src/divida/transaction.cpp
 )
 
 set(divida_headers
 	../src/divida/beneficiary.h
-	../src/divida/beneficiary_serializer.h
 	../src/divida/date.h
 	../src/divida/exception.h
 	../src/divida/expense.h
 	../src/divida/item.h
 	../src/divida/object.h
-	../src/divida/object_serializer.h
 	../src/divida/person.h
-	../src/divida/person_serializer.h
 	../src/divida/report.h
-	../src/divida/report_xml_serializer.h
 	../src/divida/to_string.h
 	../src/divida/transaction.h
 )

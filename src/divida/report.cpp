@@ -1,5 +1,4 @@
 #include "report.h"
-#include "report_xml_serializer.h"
 
 #include <algorithm>
 #include <cassert>
