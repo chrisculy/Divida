@@ -68,12 +68,4 @@ set(divida_headers
 
 add_library(divida ${divida_sources} ${divida_headers})
 
-# divida-console executable
-set(divida_console_sources
-	../src/divida-console/main.cpp
-)
-
-add_executable(divida-console ${divida_console_sources})
-target_link_libraries(divida-console divida)
-
 add_subdirectory(divida-tests)
