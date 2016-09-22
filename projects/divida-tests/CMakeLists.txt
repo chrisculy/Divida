@@ -10,6 +10,7 @@ set(divida_tests_sources
 	../../tests/divida_tests.cpp
 	../../tests/expense_tests.cpp
 	../../tests/integration_tests.cpp
+	../../tests/io_tests.cpp
 	../../tests/item_tests.cpp
 	../../tests/main.cpp
 	../../tests/person_tests.cpp

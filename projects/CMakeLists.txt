@@ -32,6 +32,7 @@ endif()
 
 include_directories(
 	../src
+	../external/json/include
 	../external/pugixml/include
 )
 
@@ -47,6 +48,8 @@ set(divida_sources
 	../src/divida/report.cpp
 	../src/divida/to_string.cpp
 	../src/divida/transaction.cpp
+	../src/divida/io/io.cpp
+	../src/divida/io/json_serialization.cpp
 )
 
 set(divida_headers
@@ -59,6 +62,8 @@ set(divida_headers
 	../src/divida/report.h
 	../src/divida/to_string.h
 	../src/divida/transaction.h
+	../src/divida/io/io.h
+	../src/divida/io/json_serialization.h
 )
 
 add_library(divida ${divida_sources} ${divida_headers})

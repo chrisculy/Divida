@@ -1,0 +1,307 @@
+{
+    "name": "Camping Friends",
+    "persons": [
+        {
+            "id": 0,
+            "name": "Arav Jindal",
+            "type": "person"
+        },
+        {
+            "id": 1,
+            "name": "Marco Sanchez",
+            "type": "person"
+        },
+        {
+            "id": 2,
+            "name": "Grace Yun",
+            "type": "person"
+        },
+        {
+            "id": 3,
+            "name": "Maggie McDonald",
+            "type": "person"
+        }
+    ],
+    "reports": [
+        {
+            "expenses": [
+                {
+                    "date": [
+                        12,
+                        7,
+                        2009
+                    ],
+                    "items": [
+                        {
+                            "beneficiaries": [
+                                {
+                                    "person": 0,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 1,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 2,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 3,
+                                    "type": "beneficiary"
+                                }
+                            ],
+                            "cost": 4.67000007629395,
+                            "name": "Apples",
+                            "type": "item"
+                        },
+                        {
+                            "beneficiaries": [
+                                {
+                                    "person": 0,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 1,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 2,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 3,
+                                    "type": "beneficiary"
+                                }
+                            ],
+                            "cost": 8.55000019073486,
+                            "name": "Hot dogs",
+                            "type": "item"
+                        },
+                        {
+                            "beneficiaries": [
+                                {
+                                    "person": 0,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 1,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 2,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 3,
+                                    "type": "beneficiary"
+                                }
+                            ],
+                            "cost": 4.3600001335144,
+                            "name": "Hot dog buns",
+                            "type": "item"
+                        },
+                        {
+                            "beneficiaries": [
+                                {
+                                    "person": 0,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 1,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 2,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 3,
+                                    "type": "beneficiary"
+                                }
+                            ],
+                            "cost": 3.78999996185303,
+                            "name": "Beans",
+                            "type": "item"
+                        },
+                        {
+                            "beneficiaries": [
+                                {
+                                    "person": 0,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 1,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 2,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 3,
+                                    "type": "beneficiary"
+                                }
+                            ],
+                            "cost": 9.81999969482422,
+                            "name": "Trail mix",
+                            "type": "item"
+                        },
+                        {
+                            "beneficiaries": [
+                                {
+                                    "person": 0,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 1,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 2,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 3,
+                                    "type": "beneficiary"
+                                }
+                            ],
+                            "cost": 5.03000020980835,
+                            "name": "Potato chips",
+                            "type": "item"
+                        }
+                    ],
+                    "name": "Food",
+                    "payer": 2,
+                    "type": "expense"
+                },
+                {
+                    "date": [
+                        13,
+                        7,
+                        2009
+                    ],
+                    "items": [
+                        {
+                            "beneficiaries": [
+                                {
+                                    "person": 0,
+                                    "type": "beneficiary",
+                                    "weight": 4
+                                },
+                                {
+                                    "person": 1,
+                                    "type": "beneficiary",
+                                    "weight": 3
+                                },
+                                {
+                                    "person": 2,
+                                    "type": "beneficiary",
+                                    "weight": 4
+                                },
+                                {
+                                    "person": 3,
+                                    "type": "beneficiary",
+                                    "weight": 4
+                                }
+                            ],
+                            "cost": 183.449996948242,
+                            "name": "Campsite permit",
+                            "type": "item"
+                        }
+                    ],
+                    "name": "Campsites",
+                    "payer": 0,
+                    "type": "expense"
+                },
+                {
+                    "date": [
+                        10,
+                        7,
+                        2009
+                    ],
+                    "items": [
+                        {
+                            "beneficiaries": [
+                                {
+                                    "person": 3,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 2,
+                                    "type": "beneficiary"
+                                }
+                            ],
+                            "cost": 95.7799987792969,
+                            "name": "Two person tent",
+                            "type": "item"
+                        },
+                        {
+                            "beneficiaries": [
+                                {
+                                    "person": 1,
+                                    "type": "beneficiary"
+                                }
+                            ],
+                            "cost": 14.5600004196167,
+                            "name": "Headlamp",
+                            "type": "item"
+                        },
+                        {
+                            "beneficiaries": [
+                                {
+                                    "person": 0,
+                                    "type": "beneficiary"
+                                }
+                            ],
+                            "cost": 7.59999990463257,
+                            "name": "Tarp",
+                            "type": "item"
+                        },
+                        {
+                            "beneficiaries": [
+                                {
+                                    "person": 3,
+                                    "type": "beneficiary"
+                                }
+                            ],
+                            "cost": 32.1399993896484,
+                            "name": "Hiking boots",
+                            "type": "item"
+                        },
+                        {
+                            "beneficiaries": [
+                                {
+                                    "person": 0,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 1,
+                                    "type": "beneficiary"
+                                },
+                                {
+                                    "person": 2,
+                                    "type": "beneficiary",
+                                    "weight": 5
+                                },
+                                {
+                                    "person": 3,
+                                    "type": "beneficiary"
+                                }
+                            ],
+                            "cost": 12,
+                            "name": "Firewood",
+                            "type": "item"
+                        }
+                    ],
+                    "name": "Camping supplies",
+                    "payer": 3,
+                    "type": "expense"
+                }
+            ],
+            "name": "Pacific Crest Trail Camping Trip",
+            "type": "report"
+        }
+    ],
+    "type": "group"
+}
