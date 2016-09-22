@@ -7,6 +7,7 @@ endif()
 set(divida_tests_sources
 	../../tests/beneficiary_tests.cpp
 	../../tests/date_tests.cpp
+	../../tests/divida_tests.cpp
 	../../tests/expense_tests.cpp
 	../../tests/integration_tests.cpp
 	../../tests/item_tests.cpp
