@@ -14,7 +14,12 @@ elif platform_name == 'darwin':
 	platform_folder = "mac"
 elif platform_name.startswith('linux'):
 	platform_folder = "linux"
-	cmake_command = "CC=clang CXX=clang++ " + cmake_command
+	if "COMPILER" in os.environ:
+		cmake_command = "CXX=$COMPILER " + cmake_command
+	else: 
+		cmake_command = "CXX=clang++ " + cmake_command
+	
+	print("cmake_command: '" + cmake_command + "'.\n")
 else:
 	print("Unsupported platform %s." % platform_name)
 	sys.exit(-1)
