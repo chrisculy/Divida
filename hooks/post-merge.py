@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
-import regenerate_projects
-import sys
+from regenerate_projects import regenerate_projects
 
 print("\nRunning post-merge hook ...\n")
 

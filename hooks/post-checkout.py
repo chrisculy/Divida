@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import regenerate_projects
+from regenerate_projects import regenerate_projects
 import sys
 
 print("\nRunning post-checkout hook ...\n")
