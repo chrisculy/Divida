@@ -7,10 +7,14 @@ projects_directory = os.path.dirname(os.path.realpath(__file__))
 
 platform_name = sys.platform
 platform_folder = ""
+cmake_command = "cmake ../"
 if platform_name == 'win32':
 	platform_folder = "win"
 elif platform_name == 'darwin':
 	platform_folder = "mac"
+elif platform_name.startswith('linux'):
+	platform_folder = "linux"
+	cmake_command = "CC=clang CXX=clang++ " + cmake_command
 else:
 	print("Unsupported platform %s." % platform_name)
 	sys.exit(-1)
@@ -22,7 +26,7 @@ if not os.path.exists(platform_project_directory):
 
 # run CMake from within the platform specific folder
 os.chdir(platform_project_directory)
-result = subprocess.run("cmake ../")
+result = subprocess.run(cmake_command, shell=True)
 if not result.returncode == 0:
 	sys.exit(result.returncode)
 

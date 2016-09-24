@@ -1,5 +1,7 @@
 #include "item.h"
 
+#include <algorithm>
+
 namespace divida
 {
 	item::item(const std::string& name, float cost)

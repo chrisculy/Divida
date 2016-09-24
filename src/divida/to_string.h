@@ -22,6 +22,14 @@ namespace divida
 	extern const std::string c_toStringDelimiter;
 }
 
+// output stream operators for divida types
+std::ostream& operator<<(std::ostream& o, const divida::beneficiary& beneficiary);
+std::ostream& operator<<(std::ostream& o, const divida::date& date);
+std::ostream& operator<<(std::ostream& o, const divida::expense& expense);
+std::ostream& operator<<(std::ostream& o, const divida::item& item);
+std::ostream& operator<<(std::ostream& o, const divida::person& person);
+std::ostream& operator<<(std::ostream& o, const divida::transaction& transaction);
+
 // output stream operators for generic common types
 template<typename T>
 std::ostream& operator<<(std::ostream& o, const std::vector<T>& vector)
@@ -64,14 +72,6 @@ std::ostream& operator<<(std::ostream& o, const std::weak_ptr<T>& ptr)
 	else
 		return o << divida::c_toStringInvalidWeakPointer;
 }
-
-// output stream operators for divida types
-std::ostream& operator<<(std::ostream& o, const divida::beneficiary& beneficiary);
-std::ostream& operator<<(std::ostream& o, const divida::date& date);
-std::ostream& operator<<(std::ostream& o, const divida::expense& expense);
-std::ostream& operator<<(std::ostream& o, const divida::item& item);
-std::ostream& operator<<(std::ostream& o, const divida::person& person);
-std::ostream& operator<<(std::ostream& o, const divida::transaction& transaction);
 
 namespace divida
 {

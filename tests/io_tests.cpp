@@ -55,7 +55,7 @@ namespace
 		report->add_expense(std::move(expenseCampsites));
 		report->add_expense(std::move(expenseCampingSupplies));
 
-		return std::move(group);
+		return group;
 	}
 }
 

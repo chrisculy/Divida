@@ -23,7 +23,7 @@ std::unique_ptr<divida::group> readGroupFromJsonFile(const std::string& filename
 	return readGroup(json);
 }
 
-void writeGroupToJsonFile(const group& group, const std::string& filename)
+void writeGroupToJsonFile(const divida::group& group, const std::string& filename)
 {
 	auto json = jsonFromValue(group);
 

@@ -2,6 +2,7 @@
 
 #include <divida/beneficiary.h>
 #include <divida/expense.h>
+#include <divida/group.h>
 #include <divida/item.h>
 #include <divida/person.h>
 #include <divida/report.h>
@@ -17,10 +18,7 @@ std::shared_ptr<person> readPerson(const nlohmann::json& json, divida::group& gr
 std::shared_ptr<report> readReport(const nlohmann::json& json, divida::group& group);
 
 template<typename T>
-T valueFromJson(const nlohmann::json& json, const divida::group& group)
-{
-	static_assert(false, "Unsupported type!");
-}
+T valueFromJson(const nlohmann::json& json, const divida::group& group);
 
 template<> std::unique_ptr<beneficiary> valueFromJson(const nlohmann::json& json, const divida::group& group);
 template<> std::unique_ptr<expense> valueFromJson(const nlohmann::json& json, const divida::group& group);
@@ -28,10 +26,7 @@ template<> std::unique_ptr<item> valueFromJson(const nlohmann::json& json, const
 template<> std::unique_ptr<transaction> valueFromJson(const nlohmann::json& jso, const divida::group& group);
 
 template<typename T>
-nlohmann::json jsonFromValue(const T& value)
-{
-	static_assert(false, "Unsupported type!");
-}
+nlohmann::json jsonFromValue(const T& value);
 
 template<> nlohmann::json jsonFromValue(const beneficiary& value);
 template<> nlohmann::json jsonFromValue(const expense& value);

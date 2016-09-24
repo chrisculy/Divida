@@ -12,6 +12,7 @@ ipch/
 *.pro.user*
 
 # project files
+projects/linux/
 projects/mac/
 projects/win/
 .projects_timestamp
