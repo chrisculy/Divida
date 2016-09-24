@@ -1,0 +1,7 @@
+language: cpp
+dist: trusty
+compiler:
+  - clang
+script:
+  - cd projects
+  - python3 generate.py && pushd linux && make && pushd divida-tests && ./divida-tests
