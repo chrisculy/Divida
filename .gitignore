@@ -14,3 +14,4 @@ ipch/
 # project files
 projects/mac/
 projects/win/
+.projects_timestamp
