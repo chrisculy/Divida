@@ -72,3 +72,12 @@ for (auto & transaction : transactions)
 [[Marco Sanchez] pays $39.23 to [Arav Jindal]]
 [[Marco Sanchez] pays $22.57 to [Maggie McDonald]]
 ```
+
+Development Setup
+=================
+
+To begin developing for divida, run the `projects/generate.py` script to generate your platform's project files; the resulting files will be located in a platform subfolder of the `projects` folder (e.g. `projects/win`).
+
+To keep your locally generated projects in sync with changes from git, there are provided git hooks that can be installed using the `hooks/setup.sh` script (runnable from Git Bash on Windows or any standard Bash shell on Linux or macOS). This only needs to be run once and any future changes will trigger automatic local project regeneration when changes are pulled down using git.
+
+Note: when editing the CMake project files, any new CMake files must be added to the `projects/cmake.project` file to ensure the automatic git hooks work correctly.
