@@ -18,8 +18,6 @@ elif platform_name.startswith('linux'):
 		cmake_command = "CXX=$COMPILER " + cmake_command
 	else: 
 		cmake_command = "CXX=clang++ " + cmake_command
-	
-	print("cmake_command: '" + cmake_command + "'.\n")
 else:
 	print("Unsupported platform %s." % platform_name)
 	sys.exit(-1)
