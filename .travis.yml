@@ -4,20 +4,17 @@ language: cpp
 
 python: 3.5
 
-matrix:
-  include:
-    - compiler: clang
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.7
-          packages:
-            - clang-3.7
-      env: COMPILER=clang++-3.7
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-precise-3.7
+    packages:
+      - clang-3.7
+env: COMPILER=clang++-3.7
 
 before_install:
   - sudo apt-get update -qq
 script:
   - cd projects
-  - python3 generate.py && pushd linux && make && pushd divida-tests && ./divida-tests
+  - python3 generate.py && pushd linux && make CXX=$COMPILER && pushd divida-tests && ./divida-tests
