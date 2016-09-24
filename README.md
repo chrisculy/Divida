@@ -1,5 +1,6 @@
 divida
 ======
+[![Build Status](https://travis-ci.org/chrisculy/divida.svg?branch=master)](https://travis-ci.org/chrisculy/divida)
 
 A library for dividing up costs for group activities such as shared groceries or camping trips.
 
