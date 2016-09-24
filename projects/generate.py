@@ -25,3 +25,9 @@ os.chdir(platform_project_directory)
 result = subprocess.run("cmake ../")
 if not result.returncode == 0:
 	sys.exit(result.returncode)
+
+projects_timestamp_file = os.path.join(projects_directory, ".projects_timestamp")
+if not os.path.exists(projects_timestamp_file):
+	open(projects_timestamp_file, 'x')
+	
+os.utime(projects_timestamp_file)
