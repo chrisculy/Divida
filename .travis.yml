@@ -2,6 +2,8 @@ sudo: required
 dist: precise
 language: cpp
 
+python: 3.5
+
 matrix:
   include:
     - compiler: clang
