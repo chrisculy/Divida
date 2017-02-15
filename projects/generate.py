@@ -59,6 +59,6 @@ if not result == 0:
 
 projects_timestamp_file = os.path.join(projects_directory, ".projects_timestamp")
 if not os.path.exists(projects_timestamp_file):
-	open(projects_timestamp_file, 'x')
+	open(projects_timestamp_file, 'w')
 	
 os.utime(projects_timestamp_file, None)
