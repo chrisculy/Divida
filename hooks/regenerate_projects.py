@@ -40,9 +40,13 @@ def regenerate_projects():
 
 		sys.stdout.flush();
 		
+		# regenerate for each platform that the user has already generated for
+		valid_platforms = [ "win", "mac", "linux" ]
 		os.chdir(projects_directory)
-		result = subprocess.run("python generate.py")
-		if not result.returncode == 0:
-			sys.exit(result.returncode)
+		for folder in os.listdir("."):
+			if folder in valid_platforms and os.path.isdir(folder):
+				result = subprocess.call("python generate.py " + folder)
+				if not result == 0:
+					sys.exit(result)
 	else:
 		print("Projects are up-to-date.")

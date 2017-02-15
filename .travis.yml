@@ -17,4 +17,4 @@ before_install:
   - sudo apt-get update -qq
 script:
   - cd projects
-  - python3 generate.py && pushd linux && make CXX=$COMPILER && pushd divida-tests && ./divida-tests
+  - python3 generate.py linux && pushd linux && make CXX=$COMPILER && pushd divida-tests && ./divida-tests
