@@ -77,7 +77,7 @@ for (auto & transaction : transactions)
 Development Setup
 =================
 
-To begin developing for divida, run the `projects/generate.py` script to generate your platform's project files; the resulting files will be located in a platform subfolder of the `projects` folder (e.g. `projects/win`).
+To begin developing for divida, run the `projects/generate.py <platform>` script to generate your platform's project files (where `<platform>` is one of `win`, `mac`, `linux`); the resulting files will be located in a platform subfolder of the `projects` folder (e.g. `projects/win`).
 
 To keep your locally generated projects in sync with changes from git, there are provided git hooks that can be installed using the `hooks/setup.sh` script (runnable from Git Bash on Windows or any standard Bash shell on Linux or macOS). This only needs to be run once and any future changes will trigger automatic local project regeneration when changes are pulled down using git.
 
