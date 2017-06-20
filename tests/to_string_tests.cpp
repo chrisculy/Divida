@@ -27,7 +27,6 @@ TEST_CASE("to_string - divida types", "[to_string]")
 	SECTION("expense")
 	{
 		auto payer = group.person(divida::tests::c_nameGandalf);
-		auto payerWeak = std::weak_ptr<divida::person>(payer);
 		auto name = std::string("Weapons");
 		auto date = divida::date::create(17, 3, 1946);
 
@@ -55,12 +54,9 @@ TEST_CASE("to_string - divida types", "[to_string]")
 	{
 		auto fromPerson = group.person(divida::tests::c_nameFrodo);
 		auto toPerson = group.person(divida::tests::c_nameGandalf);
-
-		auto fromPersonWeak = std::weak_ptr<divida::person>(fromPerson);
-		auto toPersonWeak = std::weak_ptr<divida::person>(toPerson);
 		auto amount = 12.35f;
 
-		auto transaction = divida::transaction(fromPersonWeak, toPersonWeak, amount);
+		auto transaction = divida::transaction(fromPerson, toPerson, amount);
 		CHECK("[[Frodo] pays $12.35 to [Gandalf]]" == divida::to_string(transaction));
 	}
 }
@@ -100,7 +96,8 @@ TEST_CASE("to_string - STL pointer types", "[to_string]")
 		SECTION("non-null pointer")
 		{
 			auto person = group.person(divida::tests::c_nameFrodo);
-			CHECK("[Frodo]" == divida::to_string(person));
+			std::weak_ptr<divida::person> personWeak = person;
+			CHECK("[Frodo]" == divida::to_string(personWeak));
 		}
 		SECTION("invalid pointer")
 		{

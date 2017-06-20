@@ -7,7 +7,6 @@ TEST_CASE("expense - Construction", "[expense]")
 {
 	auto group = divida::group(divida::tests::c_nameTestGroup);
 	auto payer = group.person(divida::tests::c_nameGandalf);
-	auto payerWeak = std::weak_ptr<divida::person>(payer);
 	auto name = std::string("Weapons");
 	auto date = divida::date::create(17, 3, 1946);
 

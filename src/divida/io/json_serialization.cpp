@@ -102,7 +102,11 @@ namespace divida::io
 		if (has_field(json, c_fieldExpenses))
 		{
 			for (auto& jsonExpense : json[c_fieldExpenses])
-				report->add_expense(valueFromJson<std::unique_ptr<expense>>(jsonExpense, group));
+			{
+				auto expense = valueFromJson<std::unique_ptr<divida::expense>>(jsonExpense, group);
+				if (expense != nullptr)
+					report->add_expense(*expense);
+			}
 		}
 
 		return report;
@@ -283,7 +287,7 @@ namespace divida::io
 		{
 			json[c_fieldExpenses] = nlohmann::json::array();
 			for (auto& expense : value.expenses())
-				json[c_fieldExpenses].push_back(jsonFromValue(*expense));
+				json[c_fieldExpenses].push_back(jsonFromValue(expense));
 		}
 
 		return json;
@@ -294,8 +298,8 @@ namespace divida::io
 		nlohmann::json json;
 		json[c_fieldType] = c_typeTransaction;
 
-		auto fromPerson = value.from_person().lock();
-		auto toPerson = value.to_person().lock();
+		auto fromPerson = value.from_person();
+		auto toPerson = value.to_person();
 		if (fromPerson != nullptr && toPerson != nullptr)
 		{
 			json[c_fieldAmount] = value.amount();
