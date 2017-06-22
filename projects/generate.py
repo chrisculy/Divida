@@ -19,7 +19,7 @@ cmake_command = "cmake ../"
 if desired_platform == "win":
 	if platform_name == "win32":
 		platform_folder = "win"
-		cmake_command += " -G \"Visual Studio 14 2015\""
+		cmake_command += " -G \"Visual Studio 15 2017\""
 	else:
 		print("Generating projects for Windows is only supported on Windows.\n")
 		sys.exit(-1)
