@@ -20,7 +20,7 @@ elseif(WINDOWS)
 elseif(LINUX)
 	set(platform_name "linux")
 else()
-	message(FATAL_ERROR "Unsupported platform.")
+	message(FATAL_ERROR "Unsupported platform: '" ${CMAKE_SYSTEM_NAME} "'.")
 endif()
 
 set(PROJECT_SOURCE_DIR "./${platform_name}")
