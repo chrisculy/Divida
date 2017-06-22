@@ -69,6 +69,7 @@ set(divida_headers
 	../src/divida/date.h
 	../src/divida/exception.h
 	../src/divida/expense.h
+	../src/divida/group.h
 	../src/divida/item.h
 	../src/divida/person.h
 	../src/divida/report.h
