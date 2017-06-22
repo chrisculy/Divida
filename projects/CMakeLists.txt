@@ -1,16 +1,21 @@
 cmake_minimum_required(VERSION 2.6)
+
 project(divida)
 
 set(divida_version_major 1)
 set(divida_version_minor 0)
 
-if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-	set(WINDOWS TRUE)
-elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	set(MACOS TRUE)
-elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	set(LINUX TRUE)
+# Platform setup
+if (NOT EMSCRIPTEN)
+	if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+		set(WINDOWS TRUE)
+	elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+		set(MACOS TRUE)
+	elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+		set(LINUX TRUE)
+	endif()
 endif()
+
 
 # Global project Settings
 if (MACOS)
@@ -19,6 +24,8 @@ elseif(WINDOWS)
 	set(platform_name "win")
 elseif(LINUX)
 	set(platform_name "linux")
+elseif(EMSCRIPTEN)
+	set(platform_name "emscripten")
 else()
 	message(FATAL_ERROR "Unsupported platform: '" ${CMAKE_SYSTEM_NAME} "'.")
 endif()
@@ -79,6 +86,14 @@ set(divida_headers
 	../src/divida/io/json_serialization.h
 )
 
-add_library(divida ${divida_sources} ${divida_headers})
+if (NOT EMSCRIPTEN)
+	add_library(divida ${divida_sources} ${divida_headers})
+else()
+	set(CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS)
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --bind --post-js ${CMAKE_CURRENT_SOURCE_DIR}/post.js")
+	add_executable(divida ${divida_sources} ${divida_headers} ../src/divida/emscripten_bindings.cpp)
+endif()
 
-add_subdirectory(divida-tests)
+if (NOT EMSCRIPTEN)
+	add_subdirectory(divida-tests)
+endif()

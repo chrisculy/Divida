@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 import subprocess
 import sys
@@ -8,7 +9,7 @@ projects_directory = os.path.dirname(os.path.realpath(__file__))
 # check for command-line argument
 if len(sys.argv) < 2:
 	print("Incorrect number of arguments!\n")
-	print("Usage: python generate.py <platform>\n\twhere <platform> is (win|mac|linux)\n")
+	print("Usage: python generate.py <platform>\n\twhere <platform> is (win|mac|linux|emscripten)\n")
 	sys.exit(-1)
 
 desired_platform = sys.argv[1]
@@ -39,6 +40,14 @@ elif desired_platform == "linux":
 			cmake_command = "CXX=clang++ {0} -G \"Unix Makefiles\"".format(cmake_command)
 	else:
 		print("Generating projects for Linux is only supported on Linux.\n")
+		sys.exit(-1)
+elif desired_platform == "emscripten":
+	if platform_name == "win32" or platform_name == "darwin" or platform_name.startswith("linux"):
+		platform_folder = "emscripten"
+		toolchain_file = os.path.join(projects_directory, "cmake/emscripten.cmake")
+		cmake_command = "{0} -DCMAKE_TOOLCHAIN_FILE={1} -G \"Unix Makefiles\"".format(cmake_command, toolchain_file)
+	else:
+		print("Generating projects for Emscripten is supported on Windows, macOS, and Linux, but not the current platform ('{0}').\n".format(platform_name))
 		sys.exit(-1)
 else:
 	print("Unsupported platform '{0}'.".format(desired_platform))
